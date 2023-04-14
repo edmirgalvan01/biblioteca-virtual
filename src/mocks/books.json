@@ -34,5 +34,11 @@
     "title": "Libro 6",
     "author": "Arturo Vazquez",
     "area": "laboratorio"
+  },
+  {
+    "img": "https://picsum.photos/200/300",
+    "title": "Libro 7",
+    "author": "Carolina Vazquez",
+    "area": "laboratorio"
   }
 ]
