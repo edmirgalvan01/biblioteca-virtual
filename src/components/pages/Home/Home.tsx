@@ -10,8 +10,6 @@ export const Home = () => {
     if (area === "todos") return;
 
     const booksFiltered = database.filter((book) => book.area === area);
-    console.log(booksFiltered);
-
     setBooks(booksFiltered);
   };
 
