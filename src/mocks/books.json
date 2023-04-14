@@ -1,0 +1,32 @@
+[
+  {
+    "img": "https://picsum.photos/200/300",
+    "title": "Libro 1",
+    "author": "Edmir Galvan"
+  },
+  {
+    "img": "https://picsum.photos/200/300",
+    "title": "Libro 2",
+    "author": "Mired Galvan"
+  },
+  {
+    "img": "https://picsum.photos/200/300",
+    "title": "Libro 3",
+    "author": "Lucy Vazquez"
+  },
+  {
+    "img": "https://picsum.photos/200/300",
+    "title": "Libro 4",
+    "author": "Edgar Galvan"
+  },
+  {
+    "img": "https://picsum.photos/200/300",
+    "title": "Libro 5",
+    "author": "Carlos Galvan"
+  },
+  {
+    "img": "https://picsum.photos/200/300",
+    "title": "Libro 6",
+    "author": "Arturo Vazquez"
+  }
+]
