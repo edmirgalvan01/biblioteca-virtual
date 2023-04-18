@@ -1,5 +1,6 @@
 import { Book } from "../../types/Books";
 import { FilterButton } from "../FilterButton/FilterButton";
+import "./Filters.css";
 
 interface Props {
   books: Array<Book>;

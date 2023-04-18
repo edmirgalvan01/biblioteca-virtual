@@ -1,0 +1,6 @@
+.filters {
+  display: flex;
+  overflow: hidden;
+  gap: 10px;
+  overflow-x: scroll;
+}
