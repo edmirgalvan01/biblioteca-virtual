@@ -1,6 +1,6 @@
 import { Book } from "../../types/Books";
 import { BookCard } from "../BookCard/BookCard";
-import "./listOfBooks.css";
+import "./ListOfBooks.css";
 
 interface Props {
   books: Array<Book>;
