@@ -1,0 +1,9 @@
+.filterButton {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: #8e8e8e;
+  background: rgba(166, 166, 166, 0.45);
+}

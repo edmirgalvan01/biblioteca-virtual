@@ -1,3 +1,5 @@
+import "./FilterButton.css";
+
 interface Props {
   filter: string;
   handleClick: (filter: string) => void;
@@ -5,7 +7,7 @@ interface Props {
 
 export const FilterButton = ({ filter, handleClick }: Props) => {
   return (
-    <button onClick={() => handleClick(filter)} className="filters--button">
+    <button onClick={() => handleClick(filter)} className="filterButton">
       {filter}
     </button>
   );

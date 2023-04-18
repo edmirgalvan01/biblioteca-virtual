@@ -1,4 +1,5 @@
 import { Book } from "../../types/Books";
+import { FilterButton } from "../FilterButton/FilterButton";
 
 interface Props {
   books: Array<Book>;
@@ -7,12 +8,12 @@ interface Props {
 
 export const Filters = ({ books, setBooks }: Props) => {
   const filtersTitles = [
-    "todos",
-    "ofimatica",
-    "laboratorio",
-    "mecanica",
-    "contabilidad",
-    "administracion",
+    "Todos",
+    "Ofimatica",
+    "Laboratorio",
+    "Mecanica",
+    "Contabilidad",
+    "Administracion",
   ];
 
   const handleClickFilter = (area: string) => {
@@ -26,13 +27,7 @@ export const Filters = ({ books, setBooks }: Props) => {
   return (
     <section className="filters">
       {filtersTitles.map((filter) => (
-        <button
-          key={filter}
-          onClick={() => handleClickFilter(filter)}
-          className="filters--button"
-        >
-          {filter}
-        </button>
+        <FilterButton filter={filter} handleClick={handleClickFilter} />
       ))}
     </section>
   );
