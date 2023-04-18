@@ -1,4 +1,5 @@
 import { Book } from "../../types/Books";
+import "./BookCard.css";
 
 interface Props {
   book: Book;
@@ -6,10 +7,10 @@ interface Props {
 
 export const BookCard = ({ book }: Props) => {
   return (
-    <article className="book">
-      <img className="book--img" src={book.img} alt={book.title} />
-      <h3 className="book--title">{book.title}</h3>
-      <p className="book--author">{book.author}</p>
+    <article className="bookCard">
+      <img className="bookCard--img" src={book.img} alt={book.title} />
+      <h3 className="bookCard--title">{book.title}</h3>
+      <p className="bookCard--author">{book.author}</p>
     </article>
   );
 };

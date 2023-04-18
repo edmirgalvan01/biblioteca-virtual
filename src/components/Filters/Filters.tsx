@@ -28,7 +28,11 @@ export const Filters = ({ books, setBooks }: Props) => {
   return (
     <section className="filters">
       {filtersTitles.map((filter) => (
-        <FilterButton filter={filter} handleClick={handleClickFilter} />
+        <FilterButton
+          key={filter}
+          filter={filter}
+          handleClick={handleClickFilter}
+        />
       ))}
     </section>
   );

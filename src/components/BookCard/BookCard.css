@@ -1,0 +1,22 @@
+.bookCard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 300px;
+  min-width: 150px;
+  width: 40%;
+}
+.bookCard--img {
+  filter: drop-shadow(0px 2px 12px rgba(0, 0, 0, 0.2));
+  border-radius: 10px;
+}
+.bookCard--title {
+  color: var(--color-black);
+  font-size: 15px;
+  font-weight: 700;
+}
+.bookCard--author {
+  color: rgba(185, 185, 185, 0.75);
+  font-size: 12px;
+  font-weight: 600;
+}
