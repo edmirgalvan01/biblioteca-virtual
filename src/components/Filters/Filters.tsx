@@ -6,6 +6,15 @@ interface Props {
 }
 
 export const Filters = ({ books, setBooks }: Props) => {
+  const filtersTitles = [
+    "todos",
+    "ofimatica",
+    "laboratorio",
+    "mecanica",
+    "contabilidad",
+    "administracion",
+  ];
+
   const handleClickFilter = (area: string) => {
     const booksFiltered = books.filter((book) => {
       if (area === "todos") return books;
@@ -16,42 +25,15 @@ export const Filters = ({ books, setBooks }: Props) => {
 
   return (
     <section className="filters">
-      <button
-        onClick={() => handleClickFilter("todos")}
-        className="filters--button"
-      >
-        Todos
-      </button>
-      <button
-        onClick={() => handleClickFilter("ofimatica")}
-        className="filters--button"
-      >
-        Ofimática
-      </button>
-      <button
-        onClick={() => handleClickFilter("laboratorio")}
-        className="filters--button"
-      >
-        Laboratorio
-      </button>
-      <button
-        onClick={() => handleClickFilter("mecanica")}
-        className="filters--button"
-      >
-        Mecánica
-      </button>
-      <button
-        onClick={() => handleClickFilter("contabilidad")}
-        className="filters--button"
-      >
-        Contabilidad
-      </button>
-      <button
-        onClick={() => handleClickFilter("administracion")}
-        className="filters--button"
-      >
-        Administración
-      </button>
+      {filtersTitles.map((filter) => (
+        <button
+          key={filter}
+          onClick={() => handleClickFilter(filter)}
+          className="filters--button"
+        >
+          {filter}
+        </button>
+      ))}
     </section>
   );
 };
