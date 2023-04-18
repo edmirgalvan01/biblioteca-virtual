@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 1",
     "author": "Edmir Galvan",
@@ -7,6 +8,7 @@
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
+    "id": 2,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 2",
     "author": "Mired Galvan",
@@ -14,6 +16,7 @@
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
+    "id": 3,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 3",
     "author": "Lucy Vazquez",
@@ -21,6 +24,7 @@
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
+    "id": 4,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 4",
     "author": "Edgar Galvan",
@@ -28,6 +32,7 @@
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
+    "id": 5,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 5",
     "author": "Carlos Galvan",
@@ -35,6 +40,7 @@
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
+    "id": 6,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 6",
     "author": "Arturo Vazquez",
@@ -42,6 +48,7 @@
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
+    "id": 7,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 7",
     "author": "Carolina Vazquez",

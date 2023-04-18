@@ -10,7 +10,7 @@ export const ListOfBooks = ({ books }: Props) => {
   return (
     <section className="listOfBooks">
       {books.map((book) => (
-        <BookCard key={book.title} book={book} />
+        <BookCard key={book.id} book={book} />
       ))}
     </section>
   );
