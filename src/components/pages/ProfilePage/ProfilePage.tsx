@@ -1,12 +1,12 @@
+import { BackButton } from "../../BackButton";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { DataItem } from "../../DataItem/DataItem";
-import { ArrowBackIcon } from "../../icons/ArrowBackIcon";
 import "./ProfilePage.css";
 
 export const ProfilePage = () => {
   return (
     <div className="profilePage">
-      <ArrowBackIcon />
+      <BackButton />
       <DataItem
         handleChange={() => {}}
         title="Nombre completo"
