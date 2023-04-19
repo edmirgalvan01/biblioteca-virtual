@@ -4,7 +4,10 @@ import books from "../../../mocks/books.json";
 import "./BookPage.css";
 import { ArrowBack } from "../../icons/ArrowBack";
 import { PrimaryButton } from "../../Buttons/Buttons";
-import { ListOfBooks } from "../../ListOfBooks/ListOfBooks";
+import {
+  ListOfBooks,
+  ListOfBooksWithTitle,
+} from "../../ListOfBooks/ListOfBooks";
 
 export const BookPage = () => {
   const navigate = useNavigate();
@@ -26,7 +29,11 @@ export const BookPage = () => {
       </section>
       <p className="bookPage--description">{book.description}</p>
       <PrimaryButton>Leer ahora</PrimaryButton>
-      <ListOfBooks books={books} style="horizontal" />
+      <ListOfBooksWithTitle
+        title="Otros libros"
+        books={books}
+        style="horizontal"
+      />
     </div>
   );
 };

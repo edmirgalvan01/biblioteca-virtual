@@ -3,4 +3,5 @@
   overflow: hidden;
   gap: 10px;
   overflow-x: scroll;
+  padding-bottom: 10px;
 }
