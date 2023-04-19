@@ -1,3 +1,4 @@
+import { filtersTitles } from "../../constants";
 import { Book } from "../../types/Books";
 import { FilterButton } from "../FilterButton/FilterButton";
 import "./Filters.css";
@@ -8,20 +9,12 @@ interface Props {
 }
 
 export const Filters = ({ books, setBooks }: Props) => {
-  const filtersTitles = [
-    "Todos",
-    "Ofimatica",
-    "Laboratorio",
-    "Mecanica",
-    "Contabilidad",
-    "Administracion",
-  ];
-
   const handleClickFilter = (area: string) => {
     const booksFiltered = books.filter((book) => {
-      if (area === "todos") return books;
+      if (area === "Todos") return books;
       if (book.area === area) return book;
     });
+
     setBooks(booksFiltered);
   };
 
