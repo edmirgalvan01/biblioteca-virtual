@@ -4,3 +4,30 @@
   gap: 15px;
   padding: 20px;
 }
+.bookPage--portrait {
+  display: flex;
+  gap: 10px;
+}
+.bookPage--portrait img {
+  width: 55%;
+  filter: drop-shadow(0px 2px 12px rgba(0, 0, 0, 0.2));
+  border-radius: 15px;
+}
+.bookPage--titles h2 {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-third);
+}
+.bookPage--description {
+  line-height: 23px;
+}
+.primaryButton {
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: var(--color-third);
+  border: none;
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 14px;
+}
