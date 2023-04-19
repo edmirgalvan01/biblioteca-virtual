@@ -1,6 +1,11 @@
-export const Edit = () => {
+interface Props {
+  onClick: () => void;
+}
+
+export const Edit = ({ onClick }: Props) => {
   return (
     <svg
+      onClick={onClick}
       width="24"
       height="25"
       viewBox="0 0 24 25"

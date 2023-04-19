@@ -10,4 +10,11 @@
 .dataItem .information input {
   border: none;
   font-size: 15px;
+  background-color: transparent;
+}
+.disabled {
+  color: #bdbdbd;
+}
+.actived {
+  color: var(--color-black);
 }
