@@ -4,16 +4,3 @@
   gap: 20px;
   padding: 20px;
 }
-.profilePage--section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.profilePage--section .information {
-  display: grid;
-  gap: 5px;
-}
-.profilePage--section .information input {
-  border: none;
-  font-size: 15px;
-}

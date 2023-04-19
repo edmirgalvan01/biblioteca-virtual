@@ -1,0 +1,13 @@
+.dataItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dataItem .information {
+  display: grid;
+  gap: 5px;
+}
+.dataItem .information input {
+  border: none;
+  font-size: 15px;
+}
