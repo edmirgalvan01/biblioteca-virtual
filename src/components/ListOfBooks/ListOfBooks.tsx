@@ -4,11 +4,14 @@ import "./ListOfBooks.css";
 
 interface Props {
   books: Array<Book>;
+  style?: string;
 }
 
-export const ListOfBooks = ({ books }: Props) => {
+export const ListOfBooks = ({ books, style = "grid" }: Props) => {
+  const styleClassName = style === "grid" ? "grid" : "horizontal";
+
   return (
-    <section className="listOfBooks">
+    <section className={`listOfBooks ${styleClassName}`}>
       {books.map((book) => (
         <BookCard key={book.id} book={book} />
       ))}

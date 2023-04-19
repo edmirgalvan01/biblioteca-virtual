@@ -1,5 +1,14 @@
 .listOfBooks {
+  padding-bottom: 10px;
+}
+.grid {
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.horizontal {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  overflow-x: scroll;
 }
