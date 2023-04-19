@@ -1,6 +1,7 @@
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { ArrowBack } from "../../icons/ArrowBack";
 import { Edit } from "../../icons/Edit";
+import "./ProfilePage.css";
 
 export const ProfilePage = () => {
   return (
