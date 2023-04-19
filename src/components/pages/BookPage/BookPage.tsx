@@ -1,6 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Book } from "../../../types/Books";
 import books from "../../../mocks/books.json";
+import "./BookPage.css";
+import { ArrowBack } from "../../icons/ArrowBack";
 
 export const BookPage = () => {
   const navigate = useNavigate();
@@ -10,8 +12,8 @@ export const BookPage = () => {
 
   return (
     <div className="bookPage">
-      <section className="arrow-back">
-        <button onClick={() => navigate(-1)}>Atras</button>
+      <section onClick={() => navigate(-1)} className="arrow-back">
+        <ArrowBack />
       </section>
       <section className="bookPage--portrait">
         <img src={book.img} alt={book.title} />
