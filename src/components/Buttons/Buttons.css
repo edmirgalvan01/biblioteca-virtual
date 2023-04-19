@@ -1,0 +1,17 @@
+.button {
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.primary {
+  border: none;
+  color: var(--color-white);
+  background-color: var(--color-third);
+}
+.secondary {
+  border: 1px solid #609966;
+  color: var(--color-black);
+  background-color: transparent;
+}

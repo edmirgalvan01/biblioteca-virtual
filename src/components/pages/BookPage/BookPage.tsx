@@ -3,6 +3,7 @@ import { Book } from "../../../types/Books";
 import books from "../../../mocks/books.json";
 import "./BookPage.css";
 import { ArrowBack } from "../../icons/ArrowBack";
+import { PrimaryButton, SecondaryButton } from "../../Buttons/Buttons";
 
 export const BookPage = () => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ export const BookPage = () => {
         </div>
       </section>
       <p className="bookPage--description">{book.description}</p>
-      <button className="primaryButton">Leer ahora</button>
+      <PrimaryButton>Leer ahora</PrimaryButton>
     </div>
   );
 };
