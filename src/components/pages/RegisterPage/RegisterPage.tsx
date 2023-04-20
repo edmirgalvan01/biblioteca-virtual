@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BackButton } from "../../BackButton";
 import "./RegisterPage.css";
+import { PrimaryButton } from "../../Buttons/Buttons";
 
 export const RegisterPage = () => {
   const [userType, setUserType] = useState("student");
@@ -19,41 +20,52 @@ export const RegisterPage = () => {
     <div className="registerPage">
       <BackButton />
       <h1>Registrarse</h1>
-      <form>
-        <div className="selectField">
+      <form className="registerForm">
+        <div className="field selectField">
           <label htmlFor="userType">Tipo de usuario</label>
-          <select name="userType" id="userType" onChange={handleChangeSelect}>
+          <select
+            required
+            name="userType"
+            id="userType"
+            onChange={handleChangeSelect}
+          >
             <option value="student">Alumno</option>
             <option value="teacher">Maestro</option>
           </select>
         </div>
-        <div className="inputField">
+        <div className="field inputField">
           <label htmlFor="name">Nombre(s)</label>
-          <input type="text" name="name" id="name" />
+          <input required type="text" name="name" id="name" />
         </div>
-        <div className="inputField">
+        <div className="field inputField">
           <label htmlFor="lastName">Apellidos</label>
-          <input type="text" name="lastName" id="lastName" />
+          <input required type="text" name="lastName" id="lastName" />
         </div>
-        <div className="inputField">
+        <div className="field inputField">
           <label htmlFor="email">Correo electrónico</label>
-          <input type="email" name="email" id="email" />
+          <input required type="email" name="email" id="email" />
         </div>
-        <div className="inputField">
+        <div className="field inputField">
           <label htmlFor="password">Contraseña</label>
-          <input type="password" name="password" id="password" />
+          <input required type="password" name="password" id="password" />
         </div>
         {userType === "student" ? (
-          <div className="inputField">
+          <div className="field inputField">
             <label htmlFor="licenseNumber">Número de matricula</label>
-            <input type="number" name="licenseNumber" id="licenseNumber" />
+            <input
+              required
+              type="number"
+              name="licenseNumber"
+              id="licenseNumber"
+            />
           </div>
         ) : (
-          <div className="inputField">
+          <div className="field inputField">
             <label htmlFor="accessCode">Código de acceso</label>
-            <input type="password" name="accessCode" id="accessCode" />
+            <input required type="password" name="accessCode" id="accessCode" />
           </div>
         )}
+        <PrimaryButton>Registrarse</PrimaryButton>
       </form>
     </div>
   );
