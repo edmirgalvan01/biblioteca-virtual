@@ -1,0 +1,22 @@
+.welcomePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  padding: 20px;
+  height: 100vh;
+}
+.welcomePage--titles {
+  display: grid;
+  gap: 10px;
+  text-align: center;
+}
+.welcomePage--titles h1 {
+  color: var(--color-third);
+}
+.welcomePage--buttons {
+  display: grid;
+  gap: 10px;
+  margin: 0 auto;
+}
