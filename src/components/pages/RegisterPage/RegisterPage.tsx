@@ -5,13 +5,13 @@ import { PrimaryButton } from "../../Buttons/Buttons";
 import { InputField, SelectField } from "../../Fields/Fields";
 
 export const RegisterPage = () => {
-  const [userType, setUserType] = useState("student");
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [licenseNumber, setLicenseNumber] = useState("");
-  const [accessCode, setAccessCode] = useState("");
+  const [userType, setUserType] = useState<string>("student");
+  const [name, setName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [licenseNumber, setLicenseNumber] = useState<string>("");
+  const [accessCode, setAccessCode] = useState<string>("");
 
   const optionsSelect = [
     { value: "student", label: "Alumno" },
@@ -33,18 +33,21 @@ export const RegisterPage = () => {
           required={true}
           onChange={handleChangeSelect}
           options={optionsSelect}
+          value={userType}
         />
         <InputField
           name="name"
           label="Nombre(s)"
           required={true}
           onChange={() => {}}
+          value={name}
         />
         <InputField
           name="lastName"
           label="Apellidos"
           required={true}
           onChange={() => {}}
+          value={lastName}
         />
         <InputField
           name="email"
@@ -52,6 +55,7 @@ export const RegisterPage = () => {
           type="email"
           required={true}
           onChange={() => {}}
+          value={email}
         />
         <InputField
           name="password"
@@ -59,6 +63,7 @@ export const RegisterPage = () => {
           type="password"
           required={true}
           onChange={() => {}}
+          value={password}
         />
         {userType === "student" ? (
           <InputField
@@ -66,6 +71,7 @@ export const RegisterPage = () => {
             label="Número de matricula"
             required={true}
             onChange={() => {}}
+            value={licenseNumber}
           />
         ) : (
           <InputField
@@ -74,6 +80,7 @@ export const RegisterPage = () => {
             label="Código de acceso"
             required={true}
             onChange={() => {}}
+            value={accessCode}
           />
         )}
         <PrimaryButton>Registrarse</PrimaryButton>
