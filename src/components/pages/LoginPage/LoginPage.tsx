@@ -5,6 +5,7 @@ import { useUser } from "../../../hooks/useUser";
 import { BackButton } from "../../BackButton";
 import { useState } from "react";
 import "./LoginPage.css";
+import { ErrorMessage } from "../../ErrorMessage/ErrorMessage";
 
 export const LoginPage = () => {
   const { signInUser } = useUser();
@@ -46,7 +47,9 @@ export const LoginPage = () => {
           }}
           value={password}
         />
-        {error && <p className="errorMessage">Credenciales inválidas</p>}
+        {error && (
+          <ErrorMessage align="center">Credenciales inválidas</ErrorMessage>
+        )}
         <PrimaryButton type="submit">Iniciar sesión</PrimaryButton>
       </form>
     </div>
