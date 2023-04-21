@@ -1,0 +1,15 @@
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  gap: 15px;
+  padding: 20px;
+}
+.loginPage h1 {
+  color: var(--color-third);
+  text-align: center;
+}
+.loginForm {
+  display: grid;
+  gap: 20px;
+}

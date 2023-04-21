@@ -3,6 +3,7 @@ interface FieldProps {
   type?: string;
   name: string;
   required: boolean;
+  value: string;
 }
 
 interface OptionType {
@@ -25,6 +26,7 @@ export const InputField = ({
   type = "text",
   required = false,
   onChange = () => {},
+  value,
 }: InputFieldProps) => {
   return (
     <div className="field">
