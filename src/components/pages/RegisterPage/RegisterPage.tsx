@@ -1,5 +1,5 @@
 import { InputField, SelectField } from "../../Fields/Fields";
-import { useRegister } from "../../../hooks/useRegister";
+import { useRegister } from "../../../hooks/useUser";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
 import "./RegisterPage.css";
