@@ -3,7 +3,7 @@ import { UserType } from "../types/Users";
 import { supabase } from "../supabase/client";
 import { useNavigate } from "react-router-dom";
 
-export const useRegister = () => {
+export const useUser = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState<UserType>({
@@ -59,10 +59,31 @@ export const useRegister = () => {
     if (!errorAuth && !errorInsert) navigate("/home");
   };
 
+  const signInUser = async (email: string, password: string) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (!error) {
+      navigate("/home");
+      return { data };
+    }
+
+    return { error };
+  };
+
   const getUserSession = async () => {
     const { data, error } = await supabase.auth.getSession();
     return { data, error };
   };
 
-  return { user, handleChangeUser, resetUser, createNewUser, getUserSession };
+  return {
+    user,
+    handleChangeUser,
+    resetUser,
+    createNewUser,
+    getUserSession,
+    signInUser,
+  };
 };

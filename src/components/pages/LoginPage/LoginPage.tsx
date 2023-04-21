@@ -3,17 +3,18 @@ import { BackButton } from "../../BackButton";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { InputField } from "../../Fields/Fields";
 import "./LoginPage.css";
+import { useUser } from "../../../hooks/useUser";
 
 export const LoginPage = () => {
+  const { signInUser } = useUser();
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    console.log(email, password);
-
     resetForm();
-    //TODO: Login with supabase
+    signInUser(email, password);
   };
 
   const resetForm = () => {
