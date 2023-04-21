@@ -59,5 +59,10 @@ export const useRegister = () => {
     if (!errorAuth && !errorInsert) navigate("/home");
   };
 
-  return { user, handleChangeUser, resetUser, createNewUser };
+  const getUserSession = async () => {
+    const { data, error } = await supabase.auth.getSession();
+    return { data, error };
+  };
+
+  return { user, handleChangeUser, resetUser, createNewUser, getUserSession };
 };
