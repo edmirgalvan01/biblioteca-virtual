@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BackButton } from "../../BackButton";
 import "./RegisterPage.css";
 import { PrimaryButton } from "../../Buttons/Buttons";
+import { InputField, SelectField } from "../../Fields/Fields";
 
 export const RegisterPage = () => {
   const [userType, setUserType] = useState("student");
@@ -12,6 +13,11 @@ export const RegisterPage = () => {
   const [licenseNumber, setLicenseNumber] = useState("");
   const [accessCode, setAccessCode] = useState("");
 
+  const optionsSelect = [
+    { value: "student", label: "Alumno" },
+    { value: "teacher", label: "Maestro" },
+  ];
+
   const handleChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setUserType(event.target.value);
   };
@@ -21,49 +27,54 @@ export const RegisterPage = () => {
       <BackButton />
       <h1>Registrarse</h1>
       <form className="registerForm">
-        <div className="field selectField">
-          <label htmlFor="userType">Tipo de usuario</label>
-          <select
-            required
-            name="userType"
-            id="userType"
-            onChange={handleChangeSelect}
-          >
-            <option value="student">Alumno</option>
-            <option value="teacher">Maestro</option>
-          </select>
-        </div>
-        <div className="field inputField">
-          <label htmlFor="name">Nombre(s)</label>
-          <input required type="text" name="name" id="name" />
-        </div>
-        <div className="field inputField">
-          <label htmlFor="lastName">Apellidos</label>
-          <input required type="text" name="lastName" id="lastName" />
-        </div>
-        <div className="field inputField">
-          <label htmlFor="email">Correo electrónico</label>
-          <input required type="email" name="email" id="email" />
-        </div>
-        <div className="field inputField">
-          <label htmlFor="password">Contraseña</label>
-          <input required type="password" name="password" id="password" />
-        </div>
+        <SelectField
+          name="userType"
+          label="Tipo de usuario"
+          required={true}
+          onChange={handleChangeSelect}
+          options={optionsSelect}
+        />
+        <InputField
+          name="name"
+          label="Nombre(s)"
+          required={true}
+          onChange={() => {}}
+        />
+        <InputField
+          name="lastName"
+          label="Apellidos"
+          required={true}
+          onChange={() => {}}
+        />
+        <InputField
+          name="email"
+          label="Correo electrónico"
+          type="email"
+          required={true}
+          onChange={() => {}}
+        />
+        <InputField
+          name="password"
+          label="Contraseña"
+          type="password"
+          required={true}
+          onChange={() => {}}
+        />
         {userType === "student" ? (
-          <div className="field inputField">
-            <label htmlFor="licenseNumber">Número de matricula</label>
-            <input
-              required
-              type="number"
-              name="licenseNumber"
-              id="licenseNumber"
-            />
-          </div>
+          <InputField
+            name="licenseNumber"
+            label="Número de matricula"
+            required={true}
+            onChange={() => {}}
+          />
         ) : (
-          <div className="field inputField">
-            <label htmlFor="accessCode">Código de acceso</label>
-            <input required type="password" name="accessCode" id="accessCode" />
-          </div>
+          <InputField
+            name="accessCode"
+            type="password"
+            label="Código de acceso"
+            required={true}
+            onChange={() => {}}
+          />
         )}
         <PrimaryButton>Registrarse</PrimaryButton>
       </form>
