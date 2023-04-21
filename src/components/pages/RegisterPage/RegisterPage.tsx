@@ -30,15 +30,29 @@ export const RegisterPage = () => {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
+    console.log(user);
 
-    // TODO: Register with supabase
+    resetForm();
+    //TODO: Register with supabase
+  };
+
+  const resetForm = () => {
+    setUser({
+      userType: "student",
+      name: "",
+      lastName: "",
+      email: "",
+      password: "",
+      licenseNumber: "",
+      accessCode: "",
+    });
   };
 
   return (
     <div className="registerPage">
       <BackButton />
       <h1>Registrarse</h1>
-      <form className="registerForm">
+      <form onSubmit={handleSubmit} className="registerForm">
         <SelectField
           name="userType"
           label="Tipo de usuario"
@@ -109,7 +123,7 @@ export const RegisterPage = () => {
             value={user.accessCode}
           />
         )}
-        <PrimaryButton onClick={handleSubmit}>Registrarse</PrimaryButton>
+        <PrimaryButton type="submit">Registrarse</PrimaryButton>
       </form>
     </div>
   );

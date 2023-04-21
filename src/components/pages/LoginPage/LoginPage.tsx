@@ -8,11 +8,24 @@ export const LoginPage = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const handleSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    console.log(email, password);
+
+    resetForm();
+    //TODO: Login with supabase
+  };
+
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
+  };
+
   return (
     <div className="loginPage">
       <BackButton />
       <h1>Iniciar sesión</h1>
-      <form className="loginForm">
+      <form onSubmit={handleSubmit} className="loginForm">
         <InputField
           name="email"
           type="email"
@@ -33,7 +46,7 @@ export const LoginPage = () => {
           }}
           value={password}
         />
-        <PrimaryButton>Iniciar sesión</PrimaryButton>
+        <PrimaryButton type="submit">Iniciar sesión</PrimaryButton>
       </form>
     </div>
   );
