@@ -1,51 +1,20 @@
 import { InputField, SelectField } from "../../Fields/Fields";
+import { useRegister } from "../../../hooks/useRegister";
 import { PrimaryButton } from "../../Buttons/Buttons";
-import { UserType } from "../../../types/Users";
 import { BackButton } from "../../BackButton";
-import { useState } from "react";
 import "./RegisterPage.css";
 
 export const RegisterPage = () => {
-  const [user, setUser] = useState<UserType>({
-    userType: "student",
-    name: "",
-    lastName: "",
-    email: "",
-    password: "",
-    licenseNumber: "",
-    accessCode: "",
-  });
+  const { user, handleChangeUser, resetUser, createNewUser } = useRegister();
 
   const optionsSelect = [
     { value: "student", label: "Alumno" },
     { value: "teacher", label: "Maestro" },
   ];
 
-  const handleChange = (value: string, property: string) => {
-    setUser({
-      ...user,
-      [property]: value,
-    });
-  };
-
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    console.log(user);
-
-    resetForm();
-    //TODO: Register with supabase
-  };
-
-  const resetForm = () => {
-    setUser({
-      userType: "student",
-      name: "",
-      lastName: "",
-      email: "",
-      password: "",
-      licenseNumber: "",
-      accessCode: "",
-    });
+    createNewUser();
   };
 
   return (
@@ -58,7 +27,7 @@ export const RegisterPage = () => {
           label="Tipo de usuario"
           required={true}
           onChange={(e) => {
-            handleChange(e.target.value, "userType");
+            handleChangeUser(e.target.value, "userType");
           }}
           options={optionsSelect}
           value={user.userType}
@@ -68,7 +37,7 @@ export const RegisterPage = () => {
           label="Nombre(s)"
           required={true}
           onChange={(e) => {
-            handleChange(e.target.value, "name");
+            handleChangeUser(e.target.value, "name");
           }}
           value={user.name}
         />
@@ -77,7 +46,7 @@ export const RegisterPage = () => {
           label="Apellidos"
           required={true}
           onChange={(e) => {
-            handleChange(e.target.value, "lastName");
+            handleChangeUser(e.target.value, "lastName");
           }}
           value={user.lastName}
         />
@@ -87,7 +56,7 @@ export const RegisterPage = () => {
           type="email"
           required={true}
           onChange={(e) => {
-            handleChange(e.target.value, "email");
+            handleChangeUser(e.target.value, "email");
           }}
           value={user.email}
         />
@@ -97,7 +66,7 @@ export const RegisterPage = () => {
           type="password"
           required={true}
           onChange={(e) => {
-            handleChange(e.target.value, "password");
+            handleChangeUser(e.target.value, "password");
           }}
           value={user.password}
         />
@@ -107,7 +76,7 @@ export const RegisterPage = () => {
             label="Número de matricula"
             required={true}
             onChange={(e) => {
-              handleChange(e.target.value, "licenseNumber");
+              handleChangeUser(e.target.value, "licenseNumber");
             }}
             value={user.licenseNumber}
           />
@@ -118,7 +87,7 @@ export const RegisterPage = () => {
             label="Código de acceso"
             required={true}
             onChange={(e) => {
-              handleChange(e.target.value, "accessCode");
+              handleChangeUser(e.target.value, "accessCode");
             }}
             value={user.accessCode}
           />
