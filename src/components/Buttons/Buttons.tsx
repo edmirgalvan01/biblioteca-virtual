@@ -2,7 +2,7 @@ import "./Buttons.css";
 
 interface Props {
   children: string;
-  onClick?: () => void;
+  onClick?: (event: any) => void;
 }
 
 export const PrimaryButton = ({ children, onClick }: Props) => {

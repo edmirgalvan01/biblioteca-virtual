@@ -54,7 +54,9 @@ export const SelectField = ({
       <label htmlFor={name}>{label}</label>
       <select required={required} name={name} id={name} onChange={onChange}>
         {options.map((option) => (
-          <option value={option.value}>{option.label}</option>
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
         ))}
       </select>
     </div>

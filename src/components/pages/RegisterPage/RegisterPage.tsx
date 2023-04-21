@@ -1,25 +1,37 @@
-import { useState } from "react";
-import { BackButton } from "../../BackButton";
-import "./RegisterPage.css";
-import { PrimaryButton } from "../../Buttons/Buttons";
 import { InputField, SelectField } from "../../Fields/Fields";
+import { PrimaryButton } from "../../Buttons/Buttons";
+import { UserType } from "../../../types/Users";
+import { BackButton } from "../../BackButton";
+import { useState } from "react";
+import "./RegisterPage.css";
 
 export const RegisterPage = () => {
-  const [userType, setUserType] = useState<string>("student");
-  const [name, setName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [licenseNumber, setLicenseNumber] = useState<string>("");
-  const [accessCode, setAccessCode] = useState<string>("");
+  const [user, setUser] = useState<UserType>({
+    userType: "student",
+    name: "",
+    lastName: "",
+    email: "",
+    password: "",
+    licenseNumber: "",
+    accessCode: "",
+  });
 
   const optionsSelect = [
     { value: "student", label: "Alumno" },
     { value: "teacher", label: "Maestro" },
   ];
 
-  const handleChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setUserType(event.target.value);
+  const handleChange = (value: string, property: string) => {
+    setUser({
+      ...user,
+      [property]: value,
+    });
+  };
+
+  const handleSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+
+    // TODO: Register with supabase
   };
 
   return (
@@ -31,47 +43,59 @@ export const RegisterPage = () => {
           name="userType"
           label="Tipo de usuario"
           required={true}
-          onChange={handleChangeSelect}
+          onChange={(e) => {
+            handleChange(e.target.value, "userType");
+          }}
           options={optionsSelect}
-          value={userType}
+          value={user.userType}
         />
         <InputField
           name="name"
           label="Nombre(s)"
           required={true}
-          onChange={() => {}}
-          value={name}
+          onChange={(e) => {
+            handleChange(e.target.value, "name");
+          }}
+          value={user.name}
         />
         <InputField
           name="lastName"
           label="Apellidos"
           required={true}
-          onChange={() => {}}
-          value={lastName}
+          onChange={(e) => {
+            handleChange(e.target.value, "lastName");
+          }}
+          value={user.lastName}
         />
         <InputField
           name="email"
           label="Correo electrónico"
           type="email"
           required={true}
-          onChange={() => {}}
-          value={email}
+          onChange={(e) => {
+            handleChange(e.target.value, "email");
+          }}
+          value={user.email}
         />
         <InputField
           name="password"
           label="Contraseña"
           type="password"
           required={true}
-          onChange={() => {}}
-          value={password}
+          onChange={(e) => {
+            handleChange(e.target.value, "password");
+          }}
+          value={user.password}
         />
-        {userType === "student" ? (
+        {user.userType === "student" ? (
           <InputField
             name="licenseNumber"
             label="Número de matricula"
             required={true}
-            onChange={() => {}}
-            value={licenseNumber}
+            onChange={(e) => {
+              handleChange(e.target.value, "licenseNumber");
+            }}
+            value={user.licenseNumber}
           />
         ) : (
           <InputField
@@ -79,11 +103,13 @@ export const RegisterPage = () => {
             type="password"
             label="Código de acceso"
             required={true}
-            onChange={() => {}}
-            value={accessCode}
+            onChange={(e) => {
+              handleChange(e.target.value, "accessCode");
+            }}
+            value={user.accessCode}
           />
         )}
-        <PrimaryButton>Registrarse</PrimaryButton>
+        <PrimaryButton onClick={handleSubmit}>Registrarse</PrimaryButton>
       </form>
     </div>
   );
