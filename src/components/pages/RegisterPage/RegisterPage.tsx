@@ -2,10 +2,14 @@ import { InputField, SelectField } from "../../Fields/Fields";
 import { useUser } from "../../../hooks/useUser";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
+import { useState } from "react";
+import { ResponseType } from "../../../types/Users";
 import "./RegisterPage.css";
 
 export const RegisterPage = () => {
-  const { user, handleChangeUser, resetUser, createNewUser } = useUser();
+  const { user, handleChangeUser, createNewUser } = useUser();
+
+  const [response, setResponse] = useState<ResponseType>();
 
   const optionsSelect = [
     { value: "student", label: "Alumno" },
@@ -14,7 +18,7 @@ export const RegisterPage = () => {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    createNewUser();
+    createNewUser().then(setResponse);
   };
 
   return (
@@ -92,6 +96,13 @@ export const RegisterPage = () => {
             value={user.accessCode}
           />
         )}
+
+        {response && response?.success && (
+          <div className="successMessage">
+            Se ha enviado un mensaje de confirmacion a su correo electrónico
+          </div>
+        )}
+
         <PrimaryButton type="submit">Registrarse</PrimaryButton>
       </form>
     </div>

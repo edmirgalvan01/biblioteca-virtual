@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserType } from "../types/Users";
+import { ResponseType, UserType } from "../types/Users";
 import { supabase } from "../supabase/client";
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +35,7 @@ export const useUser = () => {
     });
   };
 
-  const createNewUser = async () => {
+  const createNewUser = async (): Promise<ResponseType> => {
     resetUser();
 
     //Verify auth user
@@ -56,7 +56,11 @@ export const useUser = () => {
     //Add user to database
     const { error: errorInsert } = await supabase.from("users").insert(user);
 
-    if (!errorAuth && !errorInsert) navigate("/home");
+    if (!errorAuth && !errorInsert) {
+      return { success: true };
+    } else {
+      return { success: false, errors: { errorAuth, errorInsert } };
+    }
   };
 
   const signInUser = async (email: string, password: string) => {

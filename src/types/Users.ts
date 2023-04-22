@@ -1,3 +1,5 @@
+import { AuthError, PostgrestError } from "@supabase/supabase-js";
+
 export interface UserType {
   userType: string;
   name: string;
@@ -7,3 +9,16 @@ export interface UserType {
   licenseNumber: string;
   accessCode: string;
 }
+
+export type ResponseType =
+  | {
+      success: boolean;
+      errors?: undefined;
+    }
+  | {
+      success: boolean;
+      errors: {
+        errorAuth: AuthError | null;
+        errorInsert: PostgrestError | null;
+      };
+    };
