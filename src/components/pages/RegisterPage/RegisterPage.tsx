@@ -1,16 +1,17 @@
+import { SuccessMessage } from "../../SuccessMessage/SuccessMessage";
+import { ErrorMessage } from "../../ErrorMessage/ErrorMessage";
 import { InputField, SelectField } from "../../Fields/Fields";
-import { useUser } from "../../../hooks/useUser";
 import { PrimaryButton } from "../../Buttons/Buttons";
+import { ResponseType } from "../../../types/Users";
+import { useUser } from "../../../hooks/useUser";
 import { BackButton } from "../../BackButton";
 import { useState } from "react";
-import { ResponseType } from "../../../types/Users";
 import "./RegisterPage.css";
-import { SuccessMessage } from "../../SuccessMessage/SuccessMessage";
 
 export const RegisterPage = () => {
   const { user, handleChangeUser, createNewUser } = useUser();
 
-  const [response, setResponse] = useState<ResponseType>();
+  const [registerResponse, setRegisterResponse] = useState<ResponseType>();
 
   const optionsSelect = [
     { value: "student", label: "Alumno" },
@@ -19,7 +20,25 @@ export const RegisterPage = () => {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    createNewUser().then(setResponse);
+    createNewUser().then(setRegisterResponse);
+  };
+
+  const handleErrorMessage = (): JSX.Element | undefined => {
+    if (registerResponse) {
+      if (registerResponse.success) {
+        return (
+          <SuccessMessage align="center">
+            Se ha enviado un mensaje de confirmación a su correo electrónico
+          </SuccessMessage>
+        );
+      } else {
+        return (
+          <ErrorMessage align="center">
+            Ocurrió un error. Vuelva a intentarlo más tarde
+          </ErrorMessage>
+        );
+      }
+    }
   };
 
   return (
@@ -98,11 +117,7 @@ export const RegisterPage = () => {
           />
         )}
 
-        {response && response?.success && (
-          <SuccessMessage align="center">
-            Se ha enviado un mensaje de confirmación a su correo electrónico
-          </SuccessMessage>
-        )}
+        {handleErrorMessage()}
 
         <PrimaryButton type="submit">Registrarse</PrimaryButton>
       </form>
