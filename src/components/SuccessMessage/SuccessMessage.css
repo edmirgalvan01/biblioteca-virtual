@@ -1,0 +1,14 @@
+.successMessage {
+  font-size: 14px;
+  color: var(--color-green);
+  font-weight: 600;
+}
+.center {
+  text-align: center;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}

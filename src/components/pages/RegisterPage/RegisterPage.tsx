@@ -5,6 +5,7 @@ import { BackButton } from "../../BackButton";
 import { useState } from "react";
 import { ResponseType } from "../../../types/Users";
 import "./RegisterPage.css";
+import { SuccessMessage } from "../../SuccessMessage/SuccessMessage";
 
 export const RegisterPage = () => {
   const { user, handleChangeUser, createNewUser } = useUser();
@@ -98,9 +99,9 @@ export const RegisterPage = () => {
         )}
 
         {response && response?.success && (
-          <div className="successMessage">
-            Se ha enviado un mensaje de confirmacion a su correo electrónico
-          </div>
+          <SuccessMessage align="center">
+            Se ha enviado un mensaje de confirmación a su correo electrónico
+          </SuccessMessage>
         )}
 
         <PrimaryButton type="submit">Registrarse</PrimaryButton>
