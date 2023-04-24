@@ -18,7 +18,7 @@ export type ResponseType =
   | {
       success: boolean;
       errors: {
-        errorAuth: AuthError | null;
+        errorSignUp: AuthError | null;
         errorInsert: PostgrestError | null;
       };
     };
