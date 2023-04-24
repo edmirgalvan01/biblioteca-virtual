@@ -53,9 +53,7 @@ export const useUser = () => {
     });
 
     if (!errorSignUp && !errorInsert) {
-      getUserSession().then(({ data }) => {
-        if (data.session) navigate("/home");
-      });
+      navigate("/home");
       return { success: true };
     } else {
       return { success: false, errors: { errorSignUp, errorInsert } };
