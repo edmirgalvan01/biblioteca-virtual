@@ -1,8 +1,13 @@
 import { supabase } from "../supabase/client";
-import { UserType } from "../types/Users";
+import {
+  InsertUserResponse,
+  SignUpUserResponse,
+  UserType,
+} from "../types/Users";
 
-export const signUpUser = async (user: UserType) => {
-  //Verify auth user
+export const signUpUser = async (
+  user: UserType
+): Promise<SignUpUserResponse> => {
   const { data, error: errorSignUp } = await supabase.auth.signUp({
     email: user.email,
     password: user.password,
@@ -18,4 +23,12 @@ export const signUpUser = async (user: UserType) => {
   });
 
   return { data, errorSignUp };
+};
+
+export const insertUser = async (
+  user: UserType
+): Promise<InsertUserResponse> => {
+  const { error } = await supabase.from("users").insert(user);
+
+  return { error };
 };

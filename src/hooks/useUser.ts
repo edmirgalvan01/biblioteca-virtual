@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ResponseType, UserType } from "../types/Users";
 import { supabase } from "../supabase/client";
 import { useNavigate } from "react-router-dom";
-import { signUpUser } from "../services/user.service";
+import { insertUser, signUpUser } from "../services/user.service";
 
 export const useUser = () => {
   const navigate = useNavigate();
@@ -39,6 +39,7 @@ export const useUser = () => {
   const createNewUser = async (): Promise<ResponseType> => {
     let dataSignUp = null;
     let errorSignUp = null;
+    let errorInsert = null;
 
     resetUser();
 
@@ -47,8 +48,9 @@ export const useUser = () => {
       errorSignUp = errorSignUp;
     });
 
-    //Add user to database
-    const { error: errorInsert } = await supabase.from("users").insert(user);
+    insertUser(user).then(({ error }) => {
+      errorInsert = error;
+    });
 
     if (!errorSignUp && !errorInsert) {
       getUserSession().then(({ data }) => {
