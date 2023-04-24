@@ -57,6 +57,9 @@ export const useUser = () => {
     const { error: errorInsert } = await supabase.from("users").insert(user);
 
     if (!errorAuth && !errorInsert) {
+      getUserSession().then(({ data }) => {
+        if (data.session) navigate("/home");
+      });
       return { success: true };
     } else {
       return { success: false, errors: { errorAuth, errorInsert } };
