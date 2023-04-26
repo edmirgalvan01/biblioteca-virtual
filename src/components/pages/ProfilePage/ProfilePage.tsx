@@ -2,20 +2,11 @@ import { PrimaryButton, SecondaryButton } from "../../Buttons/Buttons";
 import { DataItem } from "../../DataItem/DataItem";
 import { useUser } from "../../../hooks/useUser";
 import { USER_TYPES } from "../../../constants";
-import { useNavigate } from "react-router-dom";
 import { BackButton } from "../../BackButton";
-import { useEffect } from "react";
 import "./ProfilePage.css";
 
 export const ProfilePage = () => {
-  const { getUserType, signOut, getUserSession, getUserData } = useUser();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    getUserSession().then(({ data }) => {
-      if (!data) navigate("/home");
-    });
-  }, []);
+  const { getUserType, signOut } = useUser();
 
   return (
     <div className="profilePage">

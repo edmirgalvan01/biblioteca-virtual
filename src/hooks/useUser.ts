@@ -99,6 +99,8 @@ export const useUser = () => {
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
 
+    if (!error) navigate("/");
+
     return { error };
   };
 
