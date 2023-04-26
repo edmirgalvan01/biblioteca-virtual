@@ -1,12 +1,21 @@
-import { PrimaryButton } from "../../Buttons/Buttons";
+import { PrimaryButton, SecondaryButton } from "../../Buttons/Buttons";
 import { DataItem } from "../../DataItem/DataItem";
 import { useUser } from "../../../hooks/useUser";
 import { USER_TYPES } from "../../../constants";
+import { useNavigate } from "react-router-dom";
 import { BackButton } from "../../BackButton";
+import { useEffect } from "react";
 import "./ProfilePage.css";
 
 export const ProfilePage = () => {
-  const { getUserType } = useUser();
+  const { getUserType, signOut, getUserSession } = useUser();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getUserSession().then(({ data }) => {
+      if (!data) navigate("/home");
+    });
+  }, []);
 
   return (
     <div className="profilePage">
@@ -33,6 +42,7 @@ export const ProfilePage = () => {
       {getUserType() === USER_TYPES.USER_TEACHER && (
         <PrimaryButton>Subir un nuevo libro</PrimaryButton>
       )}
+      <SecondaryButton onClick={signOut}>Cerrar sesión</SecondaryButton>
     </div>
   );
 };

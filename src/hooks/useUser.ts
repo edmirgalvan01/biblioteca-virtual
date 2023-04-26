@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { ResponseType, SignInUserResponse, UserType } from "../types/Users";
-import { supabase } from "../supabase/client";
-import { useNavigate } from "react-router-dom";
 import { insertUser, signInUser, signUpUser } from "../services/user.service";
+import { ResponseType, SignInUserResponse, UserType } from "../types/Users";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../supabase/client";
+import { useEffect, useState } from "react";
 import { USER_TYPES } from "../constants";
 
 export const useUser = () => {
@@ -101,6 +101,12 @@ export const useUser = () => {
     return userType;
   };
 
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    return { error };
+  };
+
   return {
     user,
     handleChangeUser,
@@ -109,5 +115,6 @@ export const useUser = () => {
     getUserSession,
     loggedIn,
     getUserType,
+    signOut,
   };
 };
