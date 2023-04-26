@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ResponseType, SignInUserResponse, UserType } from "../types/Users";
 import { supabase } from "../supabase/client";
 import { useNavigate } from "react-router-dom";
 import { insertUser, signInUser, signUpUser } from "../services/user.service";
+import { USER_TYPES } from "../constants";
 
 export const useUser = () => {
   const navigate = useNavigate();
@@ -85,6 +86,21 @@ export const useUser = () => {
     return { data, error };
   };
 
+  const getUserType = () => {
+    const [userType, setUserType] = useState<string>(USER_TYPES.USER_STUDENT);
+
+    useEffect(() => {
+      getUserSession().then(({ data, error }) => {
+        if (!error) {
+          const type = data.session?.user?.user_metadata.userType;
+          setUserType(type);
+        }
+      });
+    }, []);
+
+    return userType;
+  };
+
   return {
     user,
     handleChangeUser,
@@ -92,5 +108,6 @@ export const useUser = () => {
     createNewUser,
     getUserSession,
     loggedIn,
+    getUserType,
   };
 };
