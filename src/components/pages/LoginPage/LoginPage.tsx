@@ -8,7 +8,7 @@ import "./LoginPage.css";
 import { ErrorMessage } from "../../ErrorMessage/ErrorMessage";
 
 export const LoginPage = () => {
-  const { signInUser } = useUser();
+  const { loggedIn } = useUser();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -17,8 +17,8 @@ export const LoginPage = () => {
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    signInUser(email, password).then(({ data, error }) => {
-      if (error) setError(error);
+    loggedIn(email, password).then(({ dataSignIn, errorSignIn }) => {
+      if (errorSignIn) setError(errorSignIn);
     });
   };
 

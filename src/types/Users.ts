@@ -48,9 +48,9 @@ export type InsertUserResponse = {
 export type SignInUserResponse =
   | {
       dataSignIn: any;
-      error?: undefined;
+      errorSignIn?: undefined;
     }
   | {
       errorSignIn: never;
-      data?: undefined;
+      dataSignIn?: undefined;
     };
