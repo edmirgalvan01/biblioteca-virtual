@@ -3,6 +3,7 @@ import {
   PostgrestError,
   Session,
   User,
+  UserMetadata,
 } from "@supabase/supabase-js";
 
 export interface UserType {
@@ -54,3 +55,8 @@ export type SignInUserResponse =
       errorSignIn: never;
       dataSignIn?: undefined;
     };
+
+export type UserDataResponse = {
+  userData: UserMetadata | undefined;
+  error: AuthError | null;
+};

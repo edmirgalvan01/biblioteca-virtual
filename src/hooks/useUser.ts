@@ -1,10 +1,15 @@
-import { ResponseType, SignInUserResponse, UserType } from "../types/Users";
+import {
+  ResponseType,
+  SignInUserResponse,
+  UserDataResponse,
+  UserType,
+} from "../types/Users";
 import { signInUser, signUpUser } from "../services/user.service";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import { useEffect, useState } from "react";
 import { USER_TYPES } from "../constants";
-import { AuthError } from "@supabase/supabase-js";
+import { AuthError, UserMetadata } from "@supabase/supabase-js";
 
 export const useUser = () => {
   const navigate = useNavigate();
@@ -42,9 +47,7 @@ export const useUser = () => {
     let errorSignUp = null;
     let errorInsert = null;
 
-    resetUser();
-
-    signUpUser(user).then(({ data, errorSignUp }) => {
+    signUpUser(user).then(({ errorSignUp }) => {
       errorSignUp = errorSignUp;
     });
 
@@ -89,8 +92,9 @@ export const useUser = () => {
     return userType;
   };
 
-  const getUserData = async () => {
+  const getUserData = async (): Promise<UserDataResponse> => {
     const { data, error } = await supabase.auth.getSession();
+
     const userData = data.session?.user.user_metadata;
 
     return { userData, error };
