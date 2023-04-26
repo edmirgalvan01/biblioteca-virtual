@@ -1,5 +1,5 @@
-import { insertUser, signInUser, signUpUser } from "../services/user.service";
 import { ResponseType, SignInUserResponse, UserType } from "../types/Users";
+import { signInUser, signUpUser } from "../services/user.service";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import { useEffect, useState } from "react";
@@ -38,19 +38,13 @@ export const useUser = () => {
   };
 
   const createNewUser = async (): Promise<ResponseType> => {
-    let dataSignUp = null;
     let errorSignUp = null;
     let errorInsert = null;
 
     resetUser();
 
     signUpUser(user).then(({ data, errorSignUp }) => {
-      dataSignUp = data;
       errorSignUp = errorSignUp;
-    });
-
-    insertUser(user).then(({ error }) => {
-      errorInsert = error;
     });
 
     if (!errorSignUp && !errorInsert) {
@@ -101,6 +95,13 @@ export const useUser = () => {
     return userType;
   };
 
+  const getUserData = async () => {
+    const { data, error } = await supabase.auth.getSession();
+    const userData = data.session?.user.user_metadata;
+
+    return { userData, error };
+  };
+
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
 
@@ -116,5 +117,6 @@ export const useUser = () => {
     loggedIn,
     getUserType,
     signOut,
+    getUserData,
   };
 };

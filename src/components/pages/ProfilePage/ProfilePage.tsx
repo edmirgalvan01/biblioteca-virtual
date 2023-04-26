@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import "./ProfilePage.css";
 
 export const ProfilePage = () => {
-  const { getUserType, signOut, getUserSession } = useUser();
+  const { getUserType, signOut, getUserSession, getUserData } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
