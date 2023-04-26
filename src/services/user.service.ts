@@ -2,6 +2,7 @@ import { supabase } from "../supabase/client";
 import {
   InsertUserResponse,
   SignUpUserResponse,
+  UpdateUserResponse,
   UserType,
 } from "../types/Users";
 
@@ -40,4 +41,20 @@ export const insertUser = async (
   const { error } = await supabase.from("users").insert(user);
 
   return { error };
+};
+
+export const updateUser = async (
+  user: UserType
+): Promise<UpdateUserResponse> => {
+  const { data, error } = await supabase.auth.updateUser({
+    data: {
+      userType: user.userType,
+      name: user.name,
+      lastName: user.lastName,
+      licenseNumber: user.licenseNumber,
+      accessCode: user.accessCode,
+    },
+  });
+
+  return { data, error };
 };

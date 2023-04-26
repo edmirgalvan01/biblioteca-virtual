@@ -56,6 +56,17 @@ export type SignInUserResponse =
       dataSignIn?: undefined;
     };
 
+export type UpdateUserResponse = {
+  data:
+    | {
+        user: User;
+      }
+    | {
+        user: null;
+      };
+  error: AuthError | null;
+};
+
 export type UserDataResponse = {
   userData: UserMetadata | undefined;
   error: AuthError | null;
