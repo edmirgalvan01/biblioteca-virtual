@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import { useEffect, useState } from "react";
 import { USER_TYPES } from "../constants";
+import { AuthError } from "@supabase/supabase-js";
 
 export const useUser = () => {
   const navigate = useNavigate();
@@ -55,24 +56,17 @@ export const useUser = () => {
     }
   };
 
-  const loggedIn = async (
-    email: string,
-    password: string
-  ): Promise<SignInUserResponse> => {
-    let errorSignIn = null;
-    let dataSignIn = null;
+  const loggedIn = async (email: string, password: string) => {
+    let errorSignIn: AuthError | null = null;
 
-    signInUser(email, password).then(({ data, error }) => {
-      errorSignIn = error;
-      dataSignIn = data;
-    });
+    const { error } = await signInUser(email, password);
+    errorSignIn = error;
 
-    if (!errorSignIn) {
+    if (errorSignIn) {
+      return errorSignIn;
+    } else {
       navigate("/home");
-      return { dataSignIn };
     }
-
-    return { errorSignIn };
   };
 
   const getUserSession = async () => {

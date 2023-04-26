@@ -1,3 +1,4 @@
+import { ErrorMessage } from "../../ErrorMessage/ErrorMessage";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { AuthError } from "@supabase/supabase-js";
 import { InputField } from "../../Fields/Fields";
@@ -5,19 +6,18 @@ import { useUser } from "../../../hooks/useUser";
 import { BackButton } from "../../BackButton";
 import { useState } from "react";
 import "./LoginPage.css";
-import { ErrorMessage } from "../../ErrorMessage/ErrorMessage";
 
 export const LoginPage = () => {
   const { loggedIn } = useUser();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<AuthError>();
+  const [error, setError] = useState<AuthError | undefined>();
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    loggedIn(email, password).then(({ dataSignIn, errorSignIn }) => {
+    loggedIn(email, password).then((errorSignIn) => {
       if (errorSignIn) setError(errorSignIn);
     });
   };
