@@ -25,6 +25,15 @@ export const signUpUser = async (
   return { data, errorSignUp };
 };
 
+export const signInUser = async (email: string, password: string) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  return { data, error };
+};
+
 export const insertUser = async (
   user: UserType
 ): Promise<InsertUserResponse> => {

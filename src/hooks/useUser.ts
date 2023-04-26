@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ResponseType, UserType } from "../types/Users";
+import { ResponseType, SignInUserResponse, UserType } from "../types/Users";
 import { supabase } from "../supabase/client";
 import { useNavigate } from "react-router-dom";
-import { insertUser, signUpUser } from "../services/user.service";
+import { insertUser, signInUser, signUpUser } from "../services/user.service";
 
 export const useUser = () => {
   const navigate = useNavigate();
@@ -60,18 +60,24 @@ export const useUser = () => {
     }
   };
 
-  const signInUser = async (email: string, password: string) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+  const loggedIn = async (
+    email: string,
+    password: string
+  ): Promise<SignInUserResponse> => {
+    let errorSignIn = null;
+    let dataSignIn = null;
+
+    signInUser(email, password).then(({ data, error }) => {
+      errorSignIn = error;
+      dataSignIn = data;
     });
 
-    if (!error) {
+    if (!errorSignIn) {
       navigate("/home");
-      return { data };
+      return { dataSignIn };
     }
 
-    return { error };
+    return { errorSignIn };
   };
 
   const getUserSession = async () => {
@@ -85,6 +91,6 @@ export const useUser = () => {
     resetUser,
     createNewUser,
     getUserSession,
-    signInUser,
+    loggedIn,
   };
 };

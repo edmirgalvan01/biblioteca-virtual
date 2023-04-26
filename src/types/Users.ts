@@ -44,3 +44,13 @@ export type SignUpUserResponse = {
 export type InsertUserResponse = {
   error: PostgrestError | null;
 };
+
+export type SignInUserResponse =
+  | {
+      dataSignIn: any;
+      error?: undefined;
+    }
+  | {
+      errorSignIn: never;
+      data?: undefined;
+    };
