@@ -4,6 +4,7 @@ import { InputField, SelectField } from "../../Fields/Fields";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { ResponseType } from "../../../types/Users";
 import { useUser } from "../../../hooks/useUser";
+import { USER_TYPES } from "../../../constants";
 import { BackButton } from "../../BackButton";
 import { useState } from "react";
 import "./RegisterPage.css";
@@ -14,8 +15,8 @@ export const RegisterPage = () => {
   const [registerResponse, setRegisterResponse] = useState<ResponseType>();
 
   const optionsSelect = [
-    { value: "student", label: "Alumno" },
-    { value: "teacher", label: "Maestro" },
+    { value: USER_TYPES.USER_STUDENT, label: "Alumno" },
+    { value: USER_TYPES.USER_TEACHER, label: "Maestro" },
   ];
 
   const handleSubmit = (event: React.SyntheticEvent) => {
