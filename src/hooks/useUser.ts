@@ -1,15 +1,10 @@
-import {
-  ResponseType,
-  SignInUserResponse,
-  UserDataResponse,
-  UserType,
-} from "../types/Users";
-import { signInUser, signUpUser } from "../services/user.service";
+import { UserDataResponse, UserType } from "../types/Users";
+import { signInUser } from "../services/user.service";
+import { AuthError } from "@supabase/supabase-js";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import { useEffect, useState } from "react";
 import { USER_TYPES } from "../constants";
-import { AuthError, UserMetadata } from "@supabase/supabase-js";
 
 export const useUser = () => {
   const navigate = useNavigate();
@@ -29,34 +24,6 @@ export const useUser = () => {
       ...user,
       [property]: value,
     });
-  };
-
-  const resetUser = () => {
-    setUser({
-      userType: "student",
-      name: "",
-      lastName: "",
-      email: "",
-      password: "",
-      licenseNumber: "",
-      accessCode: "",
-    });
-  };
-
-  const createNewUser = async (): Promise<ResponseType> => {
-    let errorSignUp = null;
-    let errorInsert = null;
-
-    signUpUser(user).then(({ errorSignUp }) => {
-      errorSignUp = errorSignUp;
-    });
-
-    if (!errorSignUp && !errorInsert) {
-      navigate("/home");
-      return { success: true };
-    } else {
-      return { success: false, errors: { errorSignUp, errorInsert } };
-    }
   };
 
   const loggedIn = async (email: string, password: string) => {
@@ -111,8 +78,6 @@ export const useUser = () => {
   return {
     user,
     handleChangeUser,
-    resetUser,
-    createNewUser,
     getUserSession,
     loggedIn,
     getUserType,

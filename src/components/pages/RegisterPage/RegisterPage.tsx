@@ -8,9 +8,11 @@ import { USER_TYPES } from "../../../constants";
 import { BackButton } from "../../BackButton";
 import { useState } from "react";
 import "./RegisterPage.css";
+import { useSignUpUser } from "../../../hooks/useSignUpUser";
 
 export const RegisterPage = () => {
-  const { user, handleChangeUser, createNewUser } = useUser();
+  const { user, handleChangeUser } = useUser();
+  const { createNewUser } = useSignUpUser(user);
 
   const [registerResponse, setRegisterResponse] = useState<ResponseType>();
 
@@ -19,9 +21,11 @@ export const RegisterPage = () => {
     { value: USER_TYPES.USER_TEACHER, label: "Maestro" },
   ];
 
-  const handleSubmit = (event: React.SyntheticEvent) => {
+  const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    createNewUser().then(setRegisterResponse);
+
+    const response = await createNewUser();
+    setRegisterResponse(response);
   };
 
   const handleErrorMessage = (): JSX.Element | undefined => {
