@@ -1,5 +1,6 @@
 import { PrimaryButton, SecondaryButton } from "../../Buttons/Buttons";
 import { UserDataResponse } from "../../../types/Users";
+import { useSignOut } from "../../../hooks/useSignOut";
 import { DataItem } from "../../DataItem/DataItem";
 import { useUser } from "../../../hooks/useUser";
 import { USER_TYPES } from "../../../constants";
@@ -8,7 +9,8 @@ import { useEffect, useState } from "react";
 import "./ProfilePage.css";
 
 export const ProfilePage = () => {
-  const { getUserType, signOut, getUserData } = useUser();
+  const { getUserType, getUserData } = useUser();
+  const { signOut } = useSignOut();
 
   const [data, setData] = useState<UserDataResponse>();
 

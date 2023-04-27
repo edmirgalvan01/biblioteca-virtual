@@ -52,20 +52,11 @@ export const useUser = () => {
     return { userData, error };
   };
 
-  const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-
-    if (!error) navigate("/");
-
-    return { error };
-  };
-
   return {
     user,
     handleChangeUser,
     getUserSession,
     getUserType,
-    signOut,
     getUserData,
   };
 };

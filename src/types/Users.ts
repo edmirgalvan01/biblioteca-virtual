@@ -26,6 +26,7 @@ export type ResponseType =
       errors: {
         errorSignUp?: AuthError | null;
         errorSignIn?: AuthError | null;
+        errorSignOut?: AuthError | null;
       };
     };
 
