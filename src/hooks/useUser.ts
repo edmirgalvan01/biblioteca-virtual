@@ -1,6 +1,4 @@
 import { UserDataResponse, UserType } from "../types/Users";
-import { signInUser } from "../services/user.service";
-import { AuthError } from "@supabase/supabase-js";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import { useEffect, useState } from "react";
@@ -24,19 +22,6 @@ export const useUser = () => {
       ...user,
       [property]: value,
     });
-  };
-
-  const loggedIn = async (email: string, password: string) => {
-    let errorSignIn: AuthError | null = null;
-
-    const { error } = await signInUser(email, password);
-    errorSignIn = error;
-
-    if (errorSignIn) {
-      return errorSignIn;
-    } else {
-      navigate("/home");
-    }
   };
 
   const getUserSession = async () => {
@@ -79,7 +64,6 @@ export const useUser = () => {
     user,
     handleChangeUser,
     getUserSession,
-    loggedIn,
     getUserType,
     signOut,
     getUserData,
