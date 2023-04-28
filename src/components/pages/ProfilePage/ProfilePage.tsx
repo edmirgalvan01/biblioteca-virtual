@@ -12,7 +12,7 @@ export const ProfilePage = () => {
   const userType = useGetUserType();
   const { signOut } = useSignOut();
 
-  const fullName = `${userData?.userData?.name} ${userData?.userData?.lastName}`;
+  const fullName = `${userData?.name} ${userData?.lastName}`;
 
   return (
     <div className="profilePage">
@@ -35,14 +35,14 @@ export const ProfilePage = () => {
           handleChange={() => {}}
           title="Código de acceso"
           type="password"
-          value={userData?.userData?.accessCode}
+          value={userData?.accessCode}
         />
       ) : (
         <DataItem
           handleChange={() => {}}
           title="Número de matricula"
           type="text"
-          value={userData?.userData?.licenseNumber}
+          value={userData?.licenseNumber}
         />
       )}
 
