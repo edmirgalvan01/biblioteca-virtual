@@ -1,5 +1,3 @@
-import { useGetSession } from "./useGetSession";
-import { USER_TYPES } from "../constants";
 import { UserType } from "../types/Users";
 import { useState } from "react";
 
