@@ -1,7 +1,7 @@
-import { UserDataResponse, UserType } from "../types/Users";
-import { supabase } from "../supabase/client";
-import { useEffect, useState } from "react";
+import { useGetSession } from "./useGetSession";
 import { USER_TYPES } from "../constants";
+import { UserType } from "../types/Users";
+import { useState } from "react";
 
 export const useUser = () => {
   const [user, setUser] = useState<UserType>({
@@ -22,32 +22,20 @@ export const useUser = () => {
   };
 
   const getUserType = () => {
+    const response = useGetSession();
     const [userType, setUserType] = useState<string>(USER_TYPES.USER_STUDENT);
 
-    useEffect(() => {
-      getUserSession().then(({ data, error }) => {
-        if (!error) {
-          const type = data.session?.user?.user_metadata.userType;
-          setUserType(type);
-        }
-      });
-    }, []);
+    if (!response.session?.error) {
+      const type = response.session?.data.session?.user?.user_metadata.userType;
+      setUserType(type);
+    }
 
     return userType;
-  };
-
-  const getUserData = async (): Promise<UserDataResponse> => {
-    const { data, error } = await supabase.auth.getSession();
-
-    const userData = data.session?.user.user_metadata;
-
-    return { userData, error };
   };
 
   return {
     user,
     handleChangeUser,
     getUserType,
-    getUserData,
   };
 };
