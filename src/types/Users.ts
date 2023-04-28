@@ -72,3 +72,8 @@ export type UserDataResponse = {
   userData: UserMetadata | undefined;
   error: AuthError | null;
 };
+
+export type SessionResponseType =
+  | { data: { session: Session }; error: null }
+  | { data: { session: null }; error: AuthError }
+  | { data: { session: null }; error: null };

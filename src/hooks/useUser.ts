@@ -1,12 +1,9 @@
 import { UserDataResponse, UserType } from "../types/Users";
-import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase/client";
 import { useEffect, useState } from "react";
 import { USER_TYPES } from "../constants";
 
 export const useUser = () => {
-  const navigate = useNavigate();
-
   const [user, setUser] = useState<UserType>({
     userType: "student",
     name: "",
@@ -22,11 +19,6 @@ export const useUser = () => {
       ...user,
       [property]: value,
     });
-  };
-
-  const getUserSession = async () => {
-    const { data, error } = await supabase.auth.getSession();
-    return { data, error };
   };
 
   const getUserType = () => {
@@ -55,7 +47,6 @@ export const useUser = () => {
   return {
     user,
     handleChangeUser,
-    getUserSession,
     getUserType,
     getUserData,
   };
