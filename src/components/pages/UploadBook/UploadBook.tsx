@@ -1,12 +1,13 @@
+import { ErrorMessage } from "../../ErrorMessage/ErrorMessage";
 import { InputField, SelectField } from "../../Fields/Fields";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
 
 import { areaTypes } from "../../../constants";
+
 import { useBook } from "../../../hooks/useBook";
 
 import "./UploadBook.css";
-import { ErrorMessage } from "../../ErrorMessage/ErrorMessage";
 
 export const UploadBook = () => {
   const { book, handleChange, handleSubmit, error } = useBook();
