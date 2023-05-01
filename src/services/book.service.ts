@@ -11,3 +11,16 @@ export const insertBook = async (
 
   return { error };
 };
+
+export const getBooks = async (): Promise<{
+  data:
+    | {
+        [x: string]: any;
+      }[]
+    | null;
+  error: PostgrestError | null;
+}> => {
+  const { data, error } = await supabase.from("books").select();
+
+  return { data, error };
+};

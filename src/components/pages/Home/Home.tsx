@@ -4,14 +4,8 @@ import { BookType } from "../../../types/Books";
 import { Filters } from "../../Filters/Filters";
 import { ListOfBooks } from "../../ListOfBooks/ListOfBooks";
 import { Header } from "../../Header/Header";
-import { supabase } from "../../../supabase/client";
 import { PostgrestError } from "@supabase/supabase-js";
-
-const getBooks = async () => {
-  const { data, error } = await supabase.from("books").select();
-
-  return { data, error };
-};
+import { getBooks } from "../../../services/book.service";
 
 const useGetBooks = () => {
   const [books, setBooks] = useState<Array<BookType>>([]);
