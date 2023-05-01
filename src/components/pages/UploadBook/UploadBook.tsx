@@ -7,17 +7,13 @@ import { BackButton } from "../../BackButton";
 import { PostgrestError } from "@supabase/supabase-js";
 import { supabase } from "../../../supabase/client";
 import { areaTypes } from "../../../constants";
+import { BookType } from "../../../types/Books";
 
 import "./UploadBook.css";
 
-const insertBook = async (book: {
-  img: string;
-  title: string;
-  author: string;
-  area: string;
-  description: string;
-  link: "";
-}): Promise<{
+const insertBook = async (
+  book: BookType
+): Promise<{
   error: PostgrestError | null;
 }> => {
   const { error } = await supabase.from("books").insert(book);
@@ -28,14 +24,9 @@ const insertBook = async (book: {
 const useUploadBook = () => {
   const [error, setError] = useState<PostgrestError | null>(null);
 
-  const upload = (book: {
-    img: string;
-    title: string;
-    author: string;
-    area: string;
-    description: string;
-    link: "";
-  }): {
+  const upload = (
+    book: BookType
+  ): {
     error: PostgrestError | null;
   } => {
     insertBook(book).then(({ error }) => setError(error));
@@ -47,14 +38,7 @@ const useUploadBook = () => {
 
 export const UploadBook = () => {
   const { upload } = useUploadBook();
-  const [book, setBook] = useState<{
-    img: string;
-    title: string;
-    author: string;
-    area: string;
-    description: string;
-    link: "";
-  }>({
+  const [book, setBook] = useState<BookType>({
     img: "",
     title: "",
     author: "",
@@ -70,7 +54,6 @@ export const UploadBook = () => {
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     const { error } = upload(book);
-    console.log(error);
   };
 
   return (
