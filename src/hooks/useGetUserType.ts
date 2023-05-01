@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useGetSession } from "./useGetSession";
-import { USER_TYPES } from "../constants";
 
 export const useGetUserType = () => {
   const { session } = useGetSession();
-  const [userType, setUserType] = useState<string>(USER_TYPES.USER_STUDENT);
+  const [userType, setUserType] = useState<string>();
 
   useEffect(() => {
     if (!session?.error) {

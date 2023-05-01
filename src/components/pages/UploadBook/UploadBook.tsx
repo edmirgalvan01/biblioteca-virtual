@@ -3,20 +3,15 @@ import { InputField, SelectField } from "../../Fields/Fields";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
 
-import { USER_TYPES, areaTypes } from "../../../constants";
+import { areaTypes } from "../../../constants";
 
 import { useBook } from "../../../hooks/useBook";
+import { useGetUserType } from "../../../hooks/useGetUserType";
 
 import "./UploadBook.css";
-import { useGetUserType } from "../../../hooks/useGetUserType";
-import { useNavigate } from "react-router-dom";
 
 export const UploadBook = () => {
-  const navigate = useNavigate();
   const { book, handleChange, handleSubmit, error } = useBook();
-  const { userType } = useGetUserType();
-
-  if (userType !== USER_TYPES.USER_TEACHER) navigate("/home");
 
   return (
     <section className="uploadBook">
