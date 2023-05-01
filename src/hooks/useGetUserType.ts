@@ -11,7 +11,7 @@ export const useGetUserType = () => {
       const type = session?.data.session?.user?.user_metadata.userType;
       setUserType(type);
     }
-  }, []);
+  }, [session]);
 
-  return userType;
+  return { userType };
 };

@@ -8,8 +8,8 @@ import { BackButton } from "../../BackButton";
 import "./ProfilePage.css";
 
 export const ProfilePage = () => {
-  const { userData, error } = useGetUserData();
-  const userType = useGetUserType();
+  const { userData } = useGetUserData();
+  const { userType } = useGetUserType();
   const { signOut } = useSignOut();
 
   const fullName = `${userData?.name} ${userData?.lastName}`;
