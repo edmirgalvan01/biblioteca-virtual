@@ -8,6 +8,7 @@ export const filtersTitles = [
 ];
 
 export const areaTypes = [
+  { value: "common", label: "Tronco común" },
   { value: "contabilidad", label: "Contabilidad" },
   { value: "administracion", label: "Administracion" },
   { value: "laboratorio", label: "Laboratorio" },
