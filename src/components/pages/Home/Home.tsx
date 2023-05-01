@@ -1,13 +1,13 @@
 import "./Home.css";
 import { useState } from "react";
 import database from "../../../mocks/books.json";
-import { Book } from "../../../types/Books";
+import { BookType } from "../../../types/Books";
 import { Filters } from "../../Filters/Filters";
 import { ListOfBooks } from "../../ListOfBooks/ListOfBooks";
 import { Header } from "../../Header/Header";
 
 export const Home = () => {
-  const [books, setBooks] = useState<Array<Book>>(database);
+  const [books, setBooks] = useState<Array<BookType>>(database);
 
   return (
     <div className="home">

@@ -1,58 +1,58 @@
 [
   {
-    "id": 1,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 1",
     "author": "Edmir Galvan",
     "area": "Ofimatica",
+    "link": "",
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
-    "id": 2,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 2",
     "author": "Mired Galvan",
     "area": "Mecanica",
+    "link": "",
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
-    "id": 3,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 3",
     "author": "Lucy Vazquez",
     "area": "Administracion",
+    "link": "",
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
-    "id": 4,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 4",
     "author": "Edgar Galvan",
     "area": "Ofimatica",
+    "link": "",
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
-    "id": 5,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 5",
     "author": "Carlos Galvan",
     "area": "Contabilidad",
+    "link": "",
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
-    "id": 6,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 6",
     "author": "Arturo Vazquez",
     "area": "Laboratorio",
+    "link": "",
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   },
   {
-    "id": 7,
     "img": "https://picsum.photos/200/300",
     "title": "Libro 7",
     "author": "Carolina Vazquez",
     "area": "Laboratorio",
+    "link": "",
     "description": "Lorem ipsum dolor sit amet consectetur. Maecenas enim integer cursus ullamcorper et egestas enim dui. Et erat feugiat aliquam ac nulla pretium a arcu. Feugiat diam id sed egestas tempor."
   }
 ]
