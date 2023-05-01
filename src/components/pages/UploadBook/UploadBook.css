@@ -1,0 +1,13 @@
+.uploadBook {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+.uploadBook h1 {
+  color: var(--color-third);
+}
+.uploadBook--form {
+  display: grid;
+  gap: 20px;
+}

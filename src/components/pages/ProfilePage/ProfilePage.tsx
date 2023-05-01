@@ -5,8 +5,8 @@ import { useSignOut } from "../../../hooks/useSignOut";
 import { DataItem } from "../../DataItem/DataItem";
 import { USER_TYPES } from "../../../constants";
 import { BackButton } from "../../BackButton";
-import "./ProfilePage.css";
 import { useNavigate } from "react-router-dom";
+import "./ProfilePage.css";
 
 export const ProfilePage = () => {
   const { userData } = useGetUserData();
