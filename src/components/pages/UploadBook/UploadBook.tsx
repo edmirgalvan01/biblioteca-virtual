@@ -4,30 +4,14 @@ import { InputField, SelectField } from "../../Fields/Fields";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
 
-import { PostgrestError } from "@supabase/supabase-js";
 import { areaTypes } from "../../../constants";
 import { BookType } from "../../../types/Books";
-import { insertBook } from "../../../services/book.service";
+import { useInsertBook } from "../../../hooks/useInsertBook";
 
 import "./UploadBook.css";
 
-const useUploadBook = () => {
-  const [error, setError] = useState<PostgrestError | null>(null);
-
-  const upload = (
-    book: BookType
-  ): {
-    error: PostgrestError | null;
-  } => {
-    insertBook(book).then(({ error }) => setError(error));
-    return { error };
-  };
-
-  return { upload };
-};
-
 export const UploadBook = () => {
-  const { upload } = useUploadBook();
+  const { insert } = useInsertBook();
   const [book, setBook] = useState<BookType>({
     img: "",
     title: "",
@@ -43,7 +27,7 @@ export const UploadBook = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    const { error } = upload(book);
+    const { error } = insert(book);
   };
 
   return (
