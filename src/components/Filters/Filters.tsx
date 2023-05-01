@@ -1,19 +1,20 @@
-import { filtersTitles } from "../../constants";
-import { Book } from "../../types/Books";
 import { FilterButton } from "../FilterButton/FilterButton";
+import { filters, filtersTitles } from "../../constants";
+import { BookType } from "../../types/Books";
 import "./Filters.css";
 
 interface Props {
-  books: Array<Book>;
-  setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
+  books: Array<BookType>;
+  setBooks: React.Dispatch<React.SetStateAction<BookType[]>>;
 }
 
 export const Filters = ({ books, setBooks }: Props) => {
   const handleClickFilter = (area: string) => {
     const booksFiltered = books.filter((book) => {
-      if (area === "Todos") return books;
+      if (area === filters.COMMON) return books;
       if (book.area === area) return book;
     });
+    console.log({ books, booksFiltered });
 
     setBooks(booksFiltered);
   };

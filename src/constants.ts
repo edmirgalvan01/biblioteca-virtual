@@ -1,10 +1,19 @@
+export const filters = {
+  COMMON: "common",
+  OFIMATICA: "ofimatica",
+  LABORATORIO: "laboratorio",
+  MECANICA: "mecanica",
+  CONTABILIDAD: "contabilidad",
+  ADMINISTRACION: "administracion",
+};
+
 export const filtersTitles = [
-  "Todos",
-  "Ofimatica",
-  "Laboratorio",
-  "Mecanica",
-  "Contabilidad",
-  "Administracion",
+  "common",
+  "ofimatica",
+  "laboratorio",
+  "mecanica",
+  "contabilidad",
+  "administracion",
 ];
 
 export const areaTypes = [
