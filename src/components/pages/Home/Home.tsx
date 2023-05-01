@@ -1,13 +1,17 @@
-import "./Home.css";
 import { useEffect, useState } from "react";
-import { BookType } from "../../../types/Books";
-import { Filters } from "../../Filters/Filters";
+
 import { ListOfBooks } from "../../ListOfBooks/ListOfBooks";
+import { Filters } from "../../Filters/Filters";
 import { Header } from "../../Header/Header";
+
+import type { BookType } from "../../../types/Books";
+
 import { useGetBooks } from "../../../hooks/useGetBooks";
 
+import "./Home.css";
+
 export const Home = () => {
-  const { books, error } = useGetBooks();
+  const { books } = useGetBooks();
   const [filteredBooks, setFilteredBooks] = useState<Array<BookType>>(books);
 
   useEffect(() => {
