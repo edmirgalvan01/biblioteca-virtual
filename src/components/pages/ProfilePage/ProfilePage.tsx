@@ -13,6 +13,9 @@ export const ProfilePage = () => {
   const { signOut } = useSignOut();
 
   const fullName = `${userData?.name} ${userData?.lastName}`;
+  const textUserType = `${
+    userType === USER_TYPES.USER_STUDENT ? "Estudiante" : "Maestro"
+  }`;
 
   return (
     <div className="profilePage">
@@ -27,7 +30,7 @@ export const ProfilePage = () => {
         handleChange={() => {}}
         title="Tipo de usuario"
         type="text"
-        value={userType}
+        value={textUserType}
       />
 
       {userType === USER_TYPES.USER_TEACHER ? (
