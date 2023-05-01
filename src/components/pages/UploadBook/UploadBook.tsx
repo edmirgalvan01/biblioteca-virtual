@@ -1,34 +1,14 @@
-import { SyntheticEvent, useState } from "react";
-
 import { InputField, SelectField } from "../../Fields/Fields";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
 
 import { areaTypes } from "../../../constants";
-import { BookType } from "../../../types/Books";
-import { useInsertBook } from "../../../hooks/useInsertBook";
+import { useBook } from "../../../hooks/useBook";
 
 import "./UploadBook.css";
 
 export const UploadBook = () => {
-  const { insert } = useInsertBook();
-  const [book, setBook] = useState<BookType>({
-    img: "",
-    title: "",
-    author: "",
-    area: "common",
-    description: "",
-    link: "",
-  });
-
-  const handleChangeBook = (property: string, value: string) => {
-    setBook({ ...book, [property]: value });
-  };
-
-  const handleSubmit = (e: SyntheticEvent) => {
-    e.preventDefault();
-    const { error } = insert(book);
-  };
+  const { book, handleChange, handleSubmit } = useBook();
 
   return (
     <section className="uploadBook">
@@ -40,35 +20,35 @@ export const UploadBook = () => {
           name="title"
           required={true}
           value={book.title}
-          onChange={(e) => handleChangeBook("title", e.target.value)}
+          onChange={(e) => handleChange("title", e.target.value)}
         />
         <InputField
           label="Autor"
           name="author"
           required={true}
           value={book.author}
-          onChange={(e) => handleChangeBook("author", e.target.value)}
+          onChange={(e) => handleChange("author", e.target.value)}
         />
         <InputField
           label="Imagen de portada"
           name="img"
           required={false}
           value={book.img}
-          onChange={(e) => handleChangeBook("img", e.target.value)}
+          onChange={(e) => handleChange("img", e.target.value)}
         />
         <InputField
           label="Enlace del libro"
           name="link"
           required={false}
           value={book.link}
-          onChange={(e) => handleChangeBook("link", e.target.value)}
+          onChange={(e) => handleChange("link", e.target.value)}
         />
         <SelectField
           label="Area"
           name="area"
           options={areaTypes}
           required={true}
-          onChange={(e) => handleChangeBook("area", e.target.value)}
+          onChange={(e) => handleChange("area", e.target.value)}
           value={book.area}
         />
         <InputField
@@ -76,7 +56,7 @@ export const UploadBook = () => {
           name="description"
           required={true}
           value={book.description}
-          onChange={(e) => handleChangeBook("description", e.target.value)}
+          onChange={(e) => handleChange("description", e.target.value)}
           type="textarea"
         />
         <PrimaryButton type="submit">Subir</PrimaryButton>
