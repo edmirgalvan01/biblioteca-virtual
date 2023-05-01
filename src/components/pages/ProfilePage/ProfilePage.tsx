@@ -6,11 +6,13 @@ import { DataItem } from "../../DataItem/DataItem";
 import { USER_TYPES } from "../../../constants";
 import { BackButton } from "../../BackButton";
 import "./ProfilePage.css";
+import { useNavigate } from "react-router-dom";
 
 export const ProfilePage = () => {
   const { userData } = useGetUserData();
   const { userType } = useGetUserType();
   const { signOut } = useSignOut();
+  const navigate = useNavigate();
 
   const fullName = `${userData?.name} ${userData?.lastName}`;
   const textUserType = `${
@@ -50,7 +52,9 @@ export const ProfilePage = () => {
       )}
 
       {userType === USER_TYPES.USER_TEACHER && (
-        <PrimaryButton>Subir un nuevo libro</PrimaryButton>
+        <PrimaryButton onClick={() => navigate("/upload")}>
+          Subir un nuevo libro
+        </PrimaryButton>
       )}
 
       <SecondaryButton onClick={signOut}>Cerrar sesión</SecondaryButton>
