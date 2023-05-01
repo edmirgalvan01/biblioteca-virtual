@@ -6,9 +6,10 @@ import { areaTypes } from "../../../constants";
 import { useBook } from "../../../hooks/useBook";
 
 import "./UploadBook.css";
+import { ErrorMessage } from "../../ErrorMessage/ErrorMessage";
 
 export const UploadBook = () => {
-  const { book, handleChange, handleSubmit } = useBook();
+  const { book, handleChange, handleSubmit, error } = useBook();
 
   return (
     <section className="uploadBook">
@@ -59,6 +60,11 @@ export const UploadBook = () => {
           onChange={(e) => handleChange("description", e.target.value)}
           type="textarea"
         />
+        {error && (
+          <ErrorMessage>
+            Algo salió mal. Inténtelo de nuevo más tarde
+          </ErrorMessage>
+        )}
         <PrimaryButton type="submit">Subir</PrimaryButton>
       </form>
     </section>

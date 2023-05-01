@@ -1,9 +1,13 @@
 import { SyntheticEvent, useState } from "react";
+import type { BookType } from "../types/Books";
+
+import { PostgrestError } from "@supabase/supabase-js";
+
 import { useInsertBook } from "./useInsertBook";
-import { BookType } from "../types/Books";
 
 export const useBook = () => {
   const { insert } = useInsertBook();
+  const [error, setError] = useState<PostgrestError | null>(null);
   const [book, setBook] = useState<BookType>({
     img: "",
     title: "",
@@ -19,8 +23,9 @@ export const useBook = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    const { error } = insert(book);
+    const { error: errorResponse } = insert(book);
+    setError(errorResponse);
   };
 
-  return { book, handleChange, handleSubmit };
+  return { book, handleChange, handleSubmit, error };
 };
