@@ -14,7 +14,6 @@ export const Filters = ({ books, setBooks }: Props) => {
       if (area === filters.COMMON) return books;
       if (book.area === area) return book;
     });
-    console.log({ books, booksFiltered });
 
     setBooks(booksFiltered);
   };
