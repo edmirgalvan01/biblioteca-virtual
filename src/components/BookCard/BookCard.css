@@ -21,3 +21,11 @@
   font-size: 12px;
   font-weight: 600;
 }
+.no-image {
+  width: initial;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-third);
+}
