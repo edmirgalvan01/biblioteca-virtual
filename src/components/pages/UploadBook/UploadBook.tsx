@@ -5,21 +5,11 @@ import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
 
 import { PostgrestError } from "@supabase/supabase-js";
-import { supabase } from "../../../supabase/client";
 import { areaTypes } from "../../../constants";
 import { BookType } from "../../../types/Books";
+import { insertBook } from "../../../services/book.service";
 
 import "./UploadBook.css";
-
-const insertBook = async (
-  book: BookType
-): Promise<{
-  error: PostgrestError | null;
-}> => {
-  const { error } = await supabase.from("books").insert(book);
-
-  return { error };
-};
 
 const useUploadBook = () => {
   const [error, setError] = useState<PostgrestError | null>(null);
