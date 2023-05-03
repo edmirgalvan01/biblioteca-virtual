@@ -28,7 +28,7 @@ export const markBookAsFavorite = async (
 };
 
 export const getFavoriteBooks = async (
-  userId: string
+  userId?: string
 ): Promise<ArrayResponseType> => {
   const { data, error } = await supabase
     .from("favoriteBooks")
