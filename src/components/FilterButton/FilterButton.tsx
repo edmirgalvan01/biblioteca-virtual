@@ -1,13 +1,14 @@
 import "./FilterButton.css";
 
 interface Props {
+  value: string;
   filter: string;
   handleClick: (filter: string) => void;
 }
 
-export const FilterButton = ({ filter, handleClick }: Props) => {
+export const FilterButton = ({ value, filter, handleClick }: Props) => {
   return (
-    <button onClick={() => handleClick(filter)} className="filterButton">
+    <button onClick={() => handleClick(value)} className="filterButton">
       {filter}
     </button>
   );

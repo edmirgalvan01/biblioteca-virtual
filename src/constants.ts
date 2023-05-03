@@ -1,4 +1,5 @@
 export const filters = {
+  ALL: "all",
   COMMON: "common",
   OFIMATICA: "ofimatica",
   LABORATORIO: "laboratorio",
@@ -17,6 +18,7 @@ export const filtersTitles = [
 ];
 
 export const areaTypes = [
+  { value: "all", label: "Todos" },
   { value: "common", label: "Tronco común" },
   { value: "contabilidad", label: "Contabilidad" },
   { value: "administracion", label: "Administracion" },

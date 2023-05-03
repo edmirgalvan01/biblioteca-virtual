@@ -1,5 +1,5 @@
 import { FilterButton } from "../FilterButton/FilterButton";
-import { filters, filtersTitles } from "../../constants";
+import { areaTypes, filters } from "../../constants";
 import { BookType } from "../../types/Books";
 import "./Filters.css";
 
@@ -11,7 +11,7 @@ interface Props {
 export const Filters = ({ books, setBooks }: Props) => {
   const handleClickFilter = (area: string) => {
     const booksFiltered = books.filter((book) => {
-      if (area === filters.COMMON) return books;
+      if (area === filters.ALL) return books;
       if (book.area === area) return book;
     });
 
@@ -20,10 +20,11 @@ export const Filters = ({ books, setBooks }: Props) => {
 
   return (
     <section className="filters">
-      {filtersTitles.map((filter) => (
+      {areaTypes.map((filter) => (
         <FilterButton
-          key={filter}
-          filter={filter}
+          key={filter.value}
+          value={filter.value}
+          filter={filter.label}
           handleClick={handleClickFilter}
         />
       ))}
