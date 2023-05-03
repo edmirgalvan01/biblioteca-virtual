@@ -18,7 +18,13 @@ export const BookPage = () => {
     <div className="bookPage">
       <BackButton />
       <section className="bookPage--portrait">
-        <img src={book?.img} alt={book?.title} />
+        {book?.img ? (
+          <img src={book?.img} alt={book?.title} />
+        ) : (
+          <div className="without-image">
+            <h2>{book?.title[0]}</h2>
+          </div>
+        )}
         <div className="bookPage--titles">
           <h1>{book?.title}</h1>
           <h2>{book?.author}</h2>
