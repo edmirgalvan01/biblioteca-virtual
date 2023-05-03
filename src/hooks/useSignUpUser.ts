@@ -9,8 +9,14 @@ export const useSignUpUser = (user: UserType) => {
   const [responseError, setResponseError] = useState<AuthError | null>();
 
   const createNewUser = async (): Promise<ResponseType> => {
-    const { errorSignUp } = await signUpUser(user);
+    const { data, errorSignUp } = await signUpUser(user);
     setResponseError(errorSignUp);
+
+    const userSession = data.session;
+    const userData = data.user;
+
+    localStorage.setItem("userSession", JSON.stringify(userSession));
+    localStorage.setItem("userData", JSON.stringify(userData));
 
     if (!responseError) {
       navigate("/home");
