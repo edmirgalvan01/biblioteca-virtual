@@ -4,3 +4,11 @@
   gap: 20px;
   padding: 20px;
 }
+.profilePage--section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--color-first);
+  padding: 15px 10px;
+}

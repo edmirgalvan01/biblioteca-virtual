@@ -1,3 +1,4 @@
+import { FavoriteBooks } from "./components/pages/FavoriteBooks/FavoriteBooks";
 import { RegisterPage } from "./components/pages/RegisterPage/RegisterPage";
 import { ProfilePage } from "./components/pages/ProfilePage/ProfilePage";
 import { WelcomePage } from "./components/pages/WelcomePage/WelcomePage";
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/upload",
     element: <UploadBook />,
+  },
+  {
+    path: "/favorite",
+    element: <FavoriteBooks />,
   },
 ]);
 

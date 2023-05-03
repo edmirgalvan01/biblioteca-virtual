@@ -1,6 +1,7 @@
 import { PrimaryButton, SecondaryButton } from "../../Buttons/Buttons";
 import { useGetUserData } from "../../../hooks/useGetUserData";
 import { useGetUserType } from "../../../hooks/useGetUserType";
+import { FavoriteIcon } from "../../icons/FavoriteIcon";
 import { useSignOut } from "../../../hooks/useSignOut";
 import { DataItem } from "../../DataItem/DataItem";
 import { USER_TYPES } from "../../../constants";
@@ -22,6 +23,7 @@ export const ProfilePage = () => {
   return (
     <div className="profilePage">
       <BackButton />
+      <h2>Datos personales</h2>
       <DataItem
         handleChange={() => {}}
         title="Nombre completo"
@@ -50,6 +52,15 @@ export const ProfilePage = () => {
           value={userData?.licenseNumber}
         />
       )}
+
+      <h2>Secciones</h2>
+      <div
+        className="profilePage--section"
+        onClick={() => navigate("/favorite")}
+      >
+        <p>Libros favoritos</p>
+        <FavoriteIcon />
+      </div>
 
       {userType === USER_TYPES.USER_TEACHER && (
         <PrimaryButton onClick={() => navigate("/upload")}>

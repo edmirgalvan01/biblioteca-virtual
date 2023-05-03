@@ -1,5 +1,5 @@
 interface Props {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const FavoriteIcon = ({ onClick }: Props) => {
