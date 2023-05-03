@@ -1,22 +1,31 @@
 import { useParams } from "react-router-dom";
 
 import { ListOfBooksWithTitle } from "../../ListOfBooks/ListOfBooks";
+import { FavoriteIcon } from "../../icons/FavoriteIcon";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
 
+import { useMarkBookAsFavorite } from "../../../hooks/useMarkBookAsFavorite";
 import { useGetBooks } from "../../../hooks/useGetBooks";
+import { useGetSession } from "../../../hooks/useGetSession";
 
 import "./BookPage.css";
-import { FavoriteIcon } from "../../icons/FavoriteIcon";
 
 export const BookPage = () => {
+  const { markAsFavorite } = useMarkBookAsFavorite();
+  const { session } = useGetSession();
   const { books } = useGetBooks();
   const { id } = useParams();
 
   const book = books.find((book) => book.id === parseInt(id!));
 
   const handleClickFavorite = () => {
-    console.log(parseInt(id!));
+    const data = {
+      user_id: session?.data.session?.user.id,
+      book_id: parseInt(id!),
+    };
+
+    markAsFavorite(data);
   };
 
   return (

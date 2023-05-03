@@ -9,6 +9,6 @@ export interface BookType {
 }
 
 export interface BookAsFavorite {
-  user_id: string;
-  book_id: number;
+  user_id?: string;
+  book_id?: number;
 }
