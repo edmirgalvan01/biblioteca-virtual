@@ -24,3 +24,12 @@ export const getBooks = async (): Promise<{
 
   return { data, error };
 };
+
+export const markBookAsFavorite = async (data: {
+  user_id: string;
+  book_id: number;
+}): Promise<PostgrestError | null> => {
+  const { error } = await supabase.from("favoriteBooks").insert(data);
+
+  return error;
+};

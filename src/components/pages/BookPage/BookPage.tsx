@@ -15,6 +15,10 @@ export const BookPage = () => {
 
   const book = books.find((book) => book.id === parseInt(id!));
 
+  const handleClickFavorite = () => {
+    console.log(parseInt(id!));
+  };
+
   return (
     <div className="bookPage">
       <BackButton />
@@ -34,7 +38,7 @@ export const BookPage = () => {
       <p className="bookPage--description">{book?.description}</p>
       <div className="bookPagae--buttons">
         <PrimaryButton>Leer ahora</PrimaryButton>
-        <FavoriteIcon onClick={() => {}} />
+        <FavoriteIcon onClick={handleClickFavorite} />
       </div>
       <ListOfBooksWithTitle
         title="Otros libros"
