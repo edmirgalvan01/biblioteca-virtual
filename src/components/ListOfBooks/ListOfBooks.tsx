@@ -13,12 +13,19 @@ interface PropsWithTitle extends Props {
 
 export const ListOfBooks = ({ books, style = "grid" }: Props) => {
   const styleClassName = style === "grid" ? "grid" : "horizontal";
+  const thereAreBooks = books.length > 0;
 
   return (
     <section className={`listOfBooks ${styleClassName}`}>
-      {books.map((book) => (
-        <BookCard key={book.id} book={book} />
-      ))}
+      {thereAreBooks ? (
+        <>
+          {books.map((book) => (
+            <BookCard key={book.id} book={book} />
+          ))}
+        </>
+      ) : (
+        <h2 className="without-books">No hay libros disponibles</h2>
+      )}
     </section>
   );
 };

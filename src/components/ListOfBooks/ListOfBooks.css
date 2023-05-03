@@ -17,3 +17,6 @@
   flex-direction: column;
   gap: 10px;
 }
+.without-books {
+  color: var(--color-third);
+}
