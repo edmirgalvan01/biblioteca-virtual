@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import { useGetSession } from "./useGetSession";
 import { getFavoriteBooks } from "../services/book.service";
 import { BookType } from "../types/Books";
-import { PostgrestError } from "@supabase/supabase-js";
+import { PostgrestError, UserMetadata } from "@supabase/supabase-js";
+import { useLocalStorage } from "./useLocalStorage";
 
 export const useGetFavoriteBooks = () => {
   const [favoriteBooks, setFavoriteBooks] = useState<Array<BookType>>([]);
   const [error, setError] = useState<PostgrestError | null>();
 
   //1. Obtener el ID del usuario segun la sesion
-  const { session } = useGetSession();
-  const userId = session?.data.session?.user.id;
+  const session = useLocalStorage("userSession") as UserMetadata;
+  const userId = session.user.id;
   console.log(userId);
 
   //2. Obtener los libros favoritos segun el ID del usuario

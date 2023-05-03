@@ -2,7 +2,7 @@ import { useGetFavoriteBooks } from "../../../hooks/useGetFavoriteBooks";
 
 export const FavoriteBooks = () => {
   const { favoriteBooks, error } = useGetFavoriteBooks();
-  console.log(favoriteBooks, error);
+  console.log(favoriteBooks);
 
   return (
     <div className="favoriteBooks">
