@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getFavoriteBooks } from "../services/book.service";
+import { getBookById, getFavoriteBooks } from "../services/book.service";
 import { BookAsFavorite, BookType } from "../types/Books";
 import { PostgrestError, UserMetadata } from "@supabase/supabase-js";
 import { useLocalStorage } from "./useLocalStorage";
@@ -15,6 +15,8 @@ export const useGetFavoriteBooks = () => {
 
   //2. Obtener los libros favoritos segun el ID del usuario
   useEffect(() => {
+    if (!userId) return;
+
     getFavoriteBooks(userId).then(({ data, error }) => {
       if (!error) {
         setBooksId(data as Array<BookAsFavorite>);
@@ -26,9 +28,10 @@ export const useGetFavoriteBooks = () => {
 
   //3. Obtener la informacion completa de esos libros
   useEffect(() => {
-    let books = [];
     booksId.forEach((book) => {
-      // TODO: getBookById(book.book_id)
+      getBookById(book.book_id!).then(({ data, error }) => {
+        if (!error) setFavoriteBooks([...favoriteBooks, data![0] as BookType]);
+      });
     });
   }, [booksId]);
 
