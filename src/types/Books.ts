@@ -9,6 +9,8 @@ export interface BookType {
 }
 
 export interface BookAsFavorite {
+  id?: number;
+  created_at?: string;
   user_id?: string;
   book_id?: number;
 }
