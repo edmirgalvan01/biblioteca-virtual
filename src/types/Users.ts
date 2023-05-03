@@ -78,3 +78,12 @@ export type SessionResponseType =
   | { data: { session: Session }; error: null }
   | { data: { session: null }; error: AuthError }
   | { data: { session: null }; error: null };
+
+export type ArrayResponseType = {
+  data:
+    | {
+        [x: string]: any;
+      }[]
+    | null;
+  error: PostgrestError | null;
+};

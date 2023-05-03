@@ -1,5 +1,6 @@
-import { PostgrestError } from "@supabase/supabase-js";
 import { BookAsFavorite, BookType } from "../types/Books";
+import { PostgrestError } from "@supabase/supabase-js";
+import { ArrayResponseType } from "../types/Users";
 import { supabase } from "../supabase/client";
 
 export const insertBook = async (
@@ -12,14 +13,7 @@ export const insertBook = async (
   return { error };
 };
 
-export const getBooks = async (): Promise<{
-  data:
-    | {
-        [x: string]: any;
-      }[]
-    | null;
-  error: PostgrestError | null;
-}> => {
+export const getBooks = async (): Promise<ArrayResponseType> => {
   const { data, error } = await supabase.from("books").select();
 
   return { data, error };
@@ -31,4 +25,15 @@ export const markBookAsFavorite = async (
   const { error } = await supabase.from("favoriteBooks").insert(data);
 
   return error;
+};
+
+export const getFavoriteBooks = async (
+  userId: string
+): Promise<ArrayResponseType> => {
+  const { data, error } = await supabase
+    .from("favoriteBooks")
+    .select()
+    .eq("user_id", userId);
+
+  return { data, error };
 };
