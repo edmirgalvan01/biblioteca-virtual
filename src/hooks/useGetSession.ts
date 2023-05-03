@@ -7,6 +7,7 @@ export const useGetSession = () => {
 
   useEffect(() => {
     supabase.auth.getSession().then((response) => setSession(response));
+    //TODO: Guardar la session en localstorage
   }, []);
 
   return { session };

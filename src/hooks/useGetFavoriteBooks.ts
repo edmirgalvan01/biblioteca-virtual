@@ -11,6 +11,7 @@ export const useGetFavoriteBooks = () => {
   //1. Obtener el ID del usuario segun la sesion
   const { session } = useGetSession();
   const userId = session?.data.session?.user.id;
+  console.log(userId);
 
   //2. Obtener los libros favoritos segun el ID del usuario
   useEffect(() => {
