@@ -1,9 +1,10 @@
 import { useGetFavoriteBooks } from "../../../hooks/useGetFavoriteBooks";
 import { BackButton } from "../../BackButton";
 import { ListOfBooks } from "../../ListOfBooks/ListOfBooks";
+import "./FavoriteBooks.css";
 
 export const FavoriteBooks = () => {
-  const { favoriteBooks, error } = useGetFavoriteBooks();
+  const { favoriteBooks } = useGetFavoriteBooks();
 
   return (
     <div className="favoriteBooks">
