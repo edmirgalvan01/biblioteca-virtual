@@ -1,5 +1,5 @@
 import { PostgrestError } from "@supabase/supabase-js";
-import { BookType } from "../types/Books";
+import { BookAsFavorite, BookType } from "../types/Books";
 import { supabase } from "../supabase/client";
 
 export const insertBook = async (
@@ -25,10 +25,9 @@ export const getBooks = async (): Promise<{
   return { data, error };
 };
 
-export const markBookAsFavorite = async (data: {
-  user_id: string;
-  book_id: number;
-}): Promise<PostgrestError | null> => {
+export const markBookAsFavorite = async (
+  data: BookAsFavorite
+): Promise<PostgrestError | null> => {
   const { error } = await supabase.from("favoriteBooks").insert(data);
 
   return error;

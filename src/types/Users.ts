@@ -27,6 +27,7 @@ export type ResponseType =
         errorSignUp?: AuthError | null;
         errorSignIn?: AuthError | null;
         errorSignOut?: AuthError | null;
+        errorMarkAsFavorite?: PostgrestError | null;
       };
     };
 

@@ -7,3 +7,8 @@ export interface BookType {
   description: string;
   link: string;
 }
+
+export interface BookAsFavorite {
+  user_id: string;
+  book_id: number;
+}
