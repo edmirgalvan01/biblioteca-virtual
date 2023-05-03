@@ -37,3 +37,8 @@ export const getFavoriteBooks = async (
 
   return { data, error };
 };
+
+export const getBookById = async (id: number): Promise<ArrayResponseType> => {
+  const { data, error } = await supabase.from("books").select().eq("id", id);
+  return { data, error };
+};
