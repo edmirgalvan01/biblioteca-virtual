@@ -7,6 +7,7 @@ import { BackButton } from "../../BackButton";
 import { useGetBooks } from "../../../hooks/useGetBooks";
 
 import "./BookPage.css";
+import { FavoriteIcon } from "../../icons/FavoriteIcon";
 
 export const BookPage = () => {
   const { books } = useGetBooks();
@@ -31,7 +32,10 @@ export const BookPage = () => {
         </div>
       </section>
       <p className="bookPage--description">{book?.description}</p>
-      <PrimaryButton>Leer ahora</PrimaryButton>
+      <div className="bookPagae--buttons">
+        <PrimaryButton>Leer ahora</PrimaryButton>
+        <FavoriteIcon onClick={() => {}} />
+      </div>
       <ListOfBooksWithTitle
         title="Otros libros"
         books={books}

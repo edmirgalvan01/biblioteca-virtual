@@ -30,3 +30,9 @@
   justify-content: center;
   align-items: center;
 }
+.bookPagae--buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+}

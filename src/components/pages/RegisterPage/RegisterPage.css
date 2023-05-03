@@ -28,6 +28,6 @@ select {
   height: 30px;
   padding-left: 10px;
 }
-button {
+.registerPage button {
   margin: 0 auto;
 }
