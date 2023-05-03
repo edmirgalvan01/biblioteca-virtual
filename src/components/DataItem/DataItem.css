@@ -8,13 +8,16 @@
   gap: 5px;
 }
 .dataItem .information input {
-  border: none;
+  color: var(--color-black);
+  padding: 10px 15px;
+  border-radius: 8px;
   font-size: 15px;
   background-color: transparent;
 }
 .disabled {
-  color: #bdbdbd;
+  border: 1px solid var(--color-first);
 }
 .actived {
-  color: var(--color-black);
+  border: 1px solid var(--color-third);
+  outline: none;
 }
