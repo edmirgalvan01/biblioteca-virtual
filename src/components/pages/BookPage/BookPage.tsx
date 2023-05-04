@@ -13,12 +13,14 @@ import { useIsFavoriteBook } from "../../../hooks/useIsFavoriteBook";
 import { FavoriteIconMarked } from "../../icons/FavoriteIconMarked";
 
 import "./BookPage.css";
+import { useUnmarkAsFavorite } from "../../../hooks/useUnmarkAsFavorite";
 
 export const BookPage = () => {
   const { id } = useParams();
   const { books } = useGetBooks();
   const { session } = useGetSession();
   const { markAsFavorite } = useMarkBookAsFavorite();
+  const { unmarkAsFavorite } = useUnmarkAsFavorite();
   const { isFavorite } = useIsFavoriteBook(parseInt(id!));
 
   const book = books.find((book) => book.id === parseInt(id!));
@@ -32,7 +34,7 @@ export const BookPage = () => {
 
       markAsFavorite(data);
     } else {
-      // TODO: useUnmarkAsFavorite(parseInt(id!))
+      unmarkAsFavorite(parseInt(id!));
     }
   };
 
