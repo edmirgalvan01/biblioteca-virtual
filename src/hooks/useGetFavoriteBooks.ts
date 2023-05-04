@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { getBookById } from "../services/book.service";
 import { BookType } from "../types/Books";
 import { useGetFavoriteData } from "./useGetFavoriteData";
+import { useSaveToLocalStorage } from "./useSaveToLocalStorage";
 
 export const useGetFavoriteBooks = () => {
   const { favoriteData, error } = useGetFavoriteData();
+  const { saveData } = useSaveToLocalStorage();
+
   const [favoriteBooks, setFavoriteBooks] = useState<Array<BookType>>([]);
 
   useEffect(() => {
@@ -16,6 +19,8 @@ export const useGetFavoriteBooks = () => {
       });
     });
   }, [favoriteData]);
+
+  saveData("favoriteBooks", favoriteBooks);
 
   return { favoriteBooks, error };
 };

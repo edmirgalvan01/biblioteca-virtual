@@ -9,13 +9,17 @@ import { useMarkBookAsFavorite } from "../../../hooks/useMarkBookAsFavorite";
 import { useGetBooks } from "../../../hooks/useGetBooks";
 import { useGetSession } from "../../../hooks/useGetSession";
 
+import { useIsFavoriteBook } from "../../../hooks/useIsFavoriteBook";
+import { FavoriteIconMarked } from "../../icons/FavoriteIconMarked";
+
 import "./BookPage.css";
 
 export const BookPage = () => {
-  const { markAsFavorite } = useMarkBookAsFavorite();
-  const { session } = useGetSession();
-  const { books } = useGetBooks();
   const { id } = useParams();
+  const { books } = useGetBooks();
+  const { session } = useGetSession();
+  const { markAsFavorite } = useMarkBookAsFavorite();
+  const { isFavorite } = useIsFavoriteBook(parseInt(id!));
 
   const book = books.find((book) => book.id === parseInt(id!));
 
@@ -47,7 +51,11 @@ export const BookPage = () => {
       <p className="bookPage--description">{book?.description}</p>
       <div className="bookPagae--buttons">
         <PrimaryButton>Leer ahora</PrimaryButton>
-        <FavoriteIcon onClick={handleClickFavorite} />
+        {isFavorite ? (
+          <FavoriteIconMarked />
+        ) : (
+          <FavoriteIcon onClick={handleClickFavorite} />
+        )}
       </div>
       <ListOfBooksWithTitle
         title="Otros libros"
