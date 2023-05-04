@@ -42,3 +42,16 @@ export const getBookById = async (id: number): Promise<ArrayResponseType> => {
   const { data, error } = await supabase.from("books").select().eq("id", id);
   return { data, error };
 };
+
+export const deleteFavoriteBook = async (
+  bookId: number
+): Promise<{
+  error: PostgrestError | null;
+}> => {
+  const { error } = await supabase
+    .from("favoriteBooks")
+    .delete()
+    .eq("book_id", bookId);
+
+  return { error };
+};

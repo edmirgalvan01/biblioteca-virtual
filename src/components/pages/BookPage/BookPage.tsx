@@ -24,12 +24,16 @@ export const BookPage = () => {
   const book = books.find((book) => book.id === parseInt(id!));
 
   const handleClickFavorite = () => {
-    const data = {
-      user_id: session?.data.session?.user.id,
-      book_id: parseInt(id!),
-    };
+    if (isFavorite) {
+      const data = {
+        user_id: session?.data.session?.user.id,
+        book_id: parseInt(id!),
+      };
 
-    markAsFavorite(data);
+      markAsFavorite(data);
+    } else {
+      // TODO: useUnmarkAsFavorite(parseInt(id!))
+    }
   };
 
   return (
