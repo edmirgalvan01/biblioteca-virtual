@@ -18,7 +18,8 @@ import { useState } from "react";
 
 export const BookPage = () => {
   const { id } = useParams();
-  const parsedId = parseInt(id!);
+  const parsedId: number = parseInt(id!);
+
   const { books } = useGetBooks();
   const { session } = useGetSession();
   const { markAsFavorite } = useMarkBookAsFavorite();
