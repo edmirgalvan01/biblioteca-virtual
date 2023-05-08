@@ -11,6 +11,7 @@ import ReactDOM from "react-dom/client";
 import React from "react";
 
 import "./index.css";
+import { SearchPage } from "./components/pages/SearchPage/SearchPage";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "/favorite",
     element: <FavoriteBooks />,
+  },
+  {
+    path: "/search",
+    element: <SearchPage />,
   },
 ]);
 
