@@ -14,27 +14,33 @@ import { FavoriteIconMarked } from "../../icons/FavoriteIconMarked";
 
 import "./BookPage.css";
 import { useUnmarkAsFavorite } from "../../../hooks/useUnmarkAsFavorite";
+import { useState } from "react";
 
 export const BookPage = () => {
   const { id } = useParams();
+  const parsedId = parseInt(id!);
   const { books } = useGetBooks();
   const { session } = useGetSession();
   const { markAsFavorite } = useMarkBookAsFavorite();
   const { unmarkAsFavorite } = useUnmarkAsFavorite();
-  const { isFavorite } = useIsFavoriteBook(parseInt(id!));
+  const { isFavorite } = useIsFavoriteBook(parsedId);
 
-  const book = books.find((book) => book.id === parseInt(id!));
+  const book = books.find((book) => book.id === parsedId);
+
+  const [favorite, setFavorite] = useState<boolean>(isFavorite);
 
   const handleClickFavorite = () => {
     if (isFavorite) {
       const data = {
         user_id: session?.data.session?.user.id,
-        book_id: parseInt(id!),
+        book_id: parsedId,
       };
 
       markAsFavorite(data);
+      setFavorite(true);
     } else {
-      unmarkAsFavorite(parseInt(id!));
+      unmarkAsFavorite(parsedId);
+      setFavorite(false);
     }
   };
 
@@ -57,10 +63,10 @@ export const BookPage = () => {
       <p className="bookPage--description">{book?.description}</p>
       <div className="bookPagae--buttons">
         <PrimaryButton>Leer ahora</PrimaryButton>
-        {isFavorite ? (
+        {favorite ? (
           <FavoriteIconMarked />
         ) : (
-          <FavoriteIcon onClick={handleClickFavorite} />
+          <FavoriteIcon onClick={() => handleClickFavorite()} />
         )}
       </div>
       <ListOfBooksWithTitle
