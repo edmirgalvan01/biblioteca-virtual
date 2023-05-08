@@ -20,6 +20,9 @@ export const BookPage = () => {
   const { isFavorite, toggleFavorite } = useIsFavoriteBook(parsedId);
 
   const book = books.find((book) => book.id === parsedId);
+  const filteredBooks = books.filter((book) => book.id !== parsedId);
+
+  const handleClickReadBook = () => (window.location.href = book?.link!);
 
   return (
     <div className="bookPage">
@@ -39,7 +42,7 @@ export const BookPage = () => {
       </section>
       <p className="bookPage--description">{book?.description}</p>
       <div className="bookPagae--buttons">
-        <PrimaryButton>Leer ahora</PrimaryButton>
+        <PrimaryButton onClick={handleClickReadBook}>Leer ahora</PrimaryButton>
         {isFavorite ? (
           <FavoriteIconMarked onClick={toggleFavorite} />
         ) : (
@@ -48,7 +51,7 @@ export const BookPage = () => {
       </div>
       <ListOfBooksWithTitle
         title="Otros libros"
-        books={books}
+        books={filteredBooks}
         style="horizontal"
       />
     </div>
