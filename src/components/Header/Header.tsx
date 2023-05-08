@@ -8,7 +8,7 @@ export const Header = () => {
     <header className="header">
       <h1>Inicio</h1>
       <nav className="header--buttons">
-        <Link to="/profile">
+        <Link to="/search">
           <Search />
         </Link>
         <Link to="/profile">
