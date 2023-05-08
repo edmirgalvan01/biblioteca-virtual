@@ -2,6 +2,9 @@ import { ErrorMessage } from "../../ErrorMessage/ErrorMessage";
 import { InputField, SelectField } from "../../Fields/Fields";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
+import * as Yup from "yup";
+
+import { BookType } from "../../../types/Books";
 
 import { areaTypes, BOOK_PROPERTIES } from "../../../constants";
 
@@ -9,7 +12,6 @@ import { useBook } from "../../../hooks/useBook";
 import { useFormik } from "formik";
 
 import "./UploadBook.css";
-import { BookType } from "../../../types/Books";
 
 export const UploadBook = () => {
   const { handleSubmit, error } = useBook();
@@ -26,6 +28,7 @@ export const UploadBook = () => {
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (values) => handleSubmit(values),
+    validationSchema: uploadBookSchema,
   });
 
   return (
@@ -87,3 +90,18 @@ export const UploadBook = () => {
     </section>
   );
 };
+
+const uploadBookSchema = Yup.object().shape({
+  title: Yup.string()
+    .min(2, "El titulo es muy corto.")
+    .required("El campo es requerido."),
+  author: Yup.string()
+    .min(2, "El nombre es muy corto.")
+    .required("El campo es requerido."),
+  img: Yup.string().min(8, "La imagen no es válida."),
+  link: Yup.string()
+    .min(8, "La URL no es válida.")
+    .required("El campo es requerido."),
+  area: Yup.string().required("El campo es requerido."),
+  description: Yup.string().required("El campo es requerido."),
+});
