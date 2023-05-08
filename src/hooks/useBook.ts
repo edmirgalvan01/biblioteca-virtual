@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 
 import type { BookType } from "../types/Books";
 
@@ -11,26 +11,12 @@ export const useBook = () => {
   const navigate = useNavigate();
   const { insert } = useInsertBook();
   const [error, setError] = useState<PostgrestError | null>(null);
-  const [book, setBook] = useState<BookType>({
-    img: "",
-    title: "",
-    author: "",
-    area: "common",
-    description: "",
-    link: "",
-  });
 
-  const handleChange = (property: string, value: string) => {
-    setBook({ ...book, [property]: value });
-  };
-
-  const handleSubmit = (e: SyntheticEvent) => {
-    e.preventDefault();
-
-    const { error: errorResponse } = insert(book);
+  const handleSubmit = (values: BookType) => {
+    const { error: errorResponse } = insert(values);
     if (!errorResponse) navigate("/home");
     setError(errorResponse);
   };
 
-  return { book, handleChange, handleSubmit, error };
+  return { handleSubmit, error };
 };

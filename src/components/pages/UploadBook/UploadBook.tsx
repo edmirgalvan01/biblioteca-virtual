@@ -6,61 +6,75 @@ import { BackButton } from "../../BackButton";
 import { areaTypes, BOOK_PROPERTIES } from "../../../constants";
 
 import { useBook } from "../../../hooks/useBook";
+import { useFormik } from "formik";
 
 import "./UploadBook.css";
+import { BookType } from "../../../types/Books";
 
 export const UploadBook = () => {
-  const { book, handleChange, handleSubmit, error } = useBook();
+  const { handleSubmit, error } = useBook();
+
+  const initialValues: BookType = {
+    img: "",
+    title: "",
+    author: "",
+    area: "common",
+    description: "",
+    link: "",
+  };
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values) => handleSubmit(values),
+  });
 
   return (
     <section className="uploadBook">
       <BackButton />
       <h1>Nuevo libro</h1>
-      <form className="uploadBook--form" onSubmit={handleSubmit}>
+      <form className="uploadBook--form" onSubmit={formik.handleSubmit}>
         <InputField
           label="Titulo"
           name={BOOK_PROPERTIES.TITLE}
           required={true}
-          value={book.title}
-          onChange={(e) => handleChange(BOOK_PROPERTIES.TITLE, e.target.value)}
+          value={formik.values.title}
+          onChange={formik.handleChange}
         />
         <InputField
           label="Autor"
           name={BOOK_PROPERTIES.AUTHOR}
           required={true}
-          value={book.author}
-          onChange={(e) => handleChange(BOOK_PROPERTIES.AUTHOR, e.target.value)}
+          value={formik.values.author}
+          onChange={formik.handleChange}
         />
         <InputField
           label="Imagen de portada"
           name={BOOK_PROPERTIES.IMG}
           required={false}
-          value={book.img}
-          onChange={(e) => handleChange(BOOK_PROPERTIES.IMG, e.target.value)}
+          value={formik.values.img}
+          onChange={formik.handleChange}
         />
         <InputField
           label="Enlace del libro"
           name={BOOK_PROPERTIES.LINK}
           required={false}
-          value={book.link}
-          onChange={(e) => handleChange(BOOK_PROPERTIES.LINK, e.target.value)}
+          value={formik.values.link}
+          onChange={formik.handleChange}
         />
         <SelectField
           label="Area"
           name={BOOK_PROPERTIES.AREA}
           options={areaTypes}
           required={true}
-          onChange={(e) => handleChange(BOOK_PROPERTIES.AREA, e.target.value)}
-          value={book.area}
+          onChange={formik.handleChange}
+          value={formik.values.area}
         />
         <InputField
           label="Descripcion"
           name={BOOK_PROPERTIES.DESCRIPTION}
           required={true}
-          value={book.description}
-          onChange={(e) =>
-            handleChange(BOOK_PROPERTIES.DESCRIPTION, e.target.value)
-          }
+          value={formik.values.description}
+          onChange={formik.handleChange}
           type="textarea"
         />
         {error && (
