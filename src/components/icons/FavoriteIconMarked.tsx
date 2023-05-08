@@ -1,6 +1,11 @@
-export const FavoriteIconMarked = () => {
+interface Props {
+  onClick: () => void;
+}
+
+export const FavoriteIconMarked = ({ onClick }: Props) => {
   return (
     <svg
+      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       className="icon icon-tabler icon-tabler-heart"
       width="25"
