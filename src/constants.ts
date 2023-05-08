@@ -31,3 +31,12 @@ export const USER_TYPES = {
   USER_STUDENT: "student",
   USER_TEACHER: "teacher",
 };
+
+export const BOOK_PROPERTIES = {
+  TITLE: "title",
+  AUTHOR: "author",
+  IMG: "img",
+  LINK: "link",
+  AREA: "area",
+  DESCRIPTION: "description",
+};

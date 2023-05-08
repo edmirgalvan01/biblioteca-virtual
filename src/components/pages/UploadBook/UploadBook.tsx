@@ -3,10 +3,9 @@ import { InputField, SelectField } from "../../Fields/Fields";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
 
-import { areaTypes } from "../../../constants";
+import { areaTypes, BOOK_PROPERTIES } from "../../../constants";
 
 import { useBook } from "../../../hooks/useBook";
-import { useGetUserType } from "../../../hooks/useGetUserType";
 
 import "./UploadBook.css";
 
@@ -20,46 +19,48 @@ export const UploadBook = () => {
       <form className="uploadBook--form" onSubmit={handleSubmit}>
         <InputField
           label="Titulo"
-          name="title"
+          name={BOOK_PROPERTIES.TITLE}
           required={true}
           value={book.title}
-          onChange={(e) => handleChange("title", e.target.value)}
+          onChange={(e) => handleChange(BOOK_PROPERTIES.TITLE, e.target.value)}
         />
         <InputField
           label="Autor"
-          name="author"
+          name={BOOK_PROPERTIES.AUTHOR}
           required={true}
           value={book.author}
-          onChange={(e) => handleChange("author", e.target.value)}
+          onChange={(e) => handleChange(BOOK_PROPERTIES.AUTHOR, e.target.value)}
         />
         <InputField
           label="Imagen de portada"
-          name="img"
+          name={BOOK_PROPERTIES.IMG}
           required={false}
           value={book.img}
-          onChange={(e) => handleChange("img", e.target.value)}
+          onChange={(e) => handleChange(BOOK_PROPERTIES.IMG, e.target.value)}
         />
         <InputField
           label="Enlace del libro"
-          name="link"
+          name={BOOK_PROPERTIES.LINK}
           required={false}
           value={book.link}
-          onChange={(e) => handleChange("link", e.target.value)}
+          onChange={(e) => handleChange(BOOK_PROPERTIES.LINK, e.target.value)}
         />
         <SelectField
           label="Area"
-          name="area"
+          name={BOOK_PROPERTIES.AREA}
           options={areaTypes}
           required={true}
-          onChange={(e) => handleChange("area", e.target.value)}
+          onChange={(e) => handleChange(BOOK_PROPERTIES.AREA, e.target.value)}
           value={book.area}
         />
         <InputField
           label="Descripcion"
-          name="description"
+          name={BOOK_PROPERTIES.DESCRIPTION}
           required={true}
           value={book.description}
-          onChange={(e) => handleChange("description", e.target.value)}
+          onChange={(e) =>
+            handleChange(BOOK_PROPERTIES.DESCRIPTION, e.target.value)
+          }
           type="textarea"
         />
         {error && (
