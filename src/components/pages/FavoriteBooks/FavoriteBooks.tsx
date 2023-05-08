@@ -9,7 +9,7 @@ export const FavoriteBooks = () => {
   return (
     <div className="favoriteBooks">
       <BackButton />
-      <h1>Favorite books</h1>
+      <h1>Libros favoritos</h1>
       <ListOfBooks books={favoriteBooks} />
     </div>
   );
