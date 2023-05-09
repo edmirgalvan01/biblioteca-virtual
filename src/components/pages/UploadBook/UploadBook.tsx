@@ -41,6 +41,7 @@ export const UploadBook = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           errorMessage={formik.errors.author}
+          error={formik.errors.author && formik.touched.author}
         />
         <InputField
           label="Imagen de portada"
@@ -49,6 +50,7 @@ export const UploadBook = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           errorMessage={formik.errors.img}
+          error={formik.errors.img && formik.touched.img}
         />
         <InputField
           label="Enlace del libro"
@@ -57,6 +59,7 @@ export const UploadBook = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           errorMessage={formik.errors.link}
+          error={formik.errors.link && formik.touched.link}
         />
         <SelectField
           label="Area"
@@ -66,6 +69,7 @@ export const UploadBook = () => {
           onBlur={formik.handleBlur}
           errorMessage={formik.errors.area}
           value={formik.values.area}
+          error={formik.errors.area && formik.touched.area}
         />
         <InputField
           label="Descripcion"
@@ -75,6 +79,7 @@ export const UploadBook = () => {
           onBlur={formik.handleBlur}
           errorMessage={formik.errors.description}
           type="textarea"
+          error={formik.errors.description && formik.touched.description}
         />
         {error && (
           <ErrorMessage>
