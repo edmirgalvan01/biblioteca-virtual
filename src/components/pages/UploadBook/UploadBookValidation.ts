@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 export const UploadBookValidation = Yup.object().shape({
   title: Yup.string()
-    .min(2, "El titulo es muy corto.")
+    .min(5, "El titulo es muy corto.")
     .required("El campo es requerido."),
   author: Yup.string()
     .min(2, "El nombre es muy corto.")

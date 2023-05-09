@@ -1,16 +1,17 @@
 import "./Fields.css";
 
+interface OptionType {
+  value: string;
+  label: string;
+}
+
 interface FieldProps {
   label: string;
   type?: string;
   name: string;
   value: string;
   errorMessage?: string;
-}
-
-interface OptionType {
-  value: string;
-  label: string;
+  error?: string | boolean;
 }
 
 interface InputFieldProps extends FieldProps {
@@ -28,9 +29,10 @@ export const InputField = ({
   name,
   label,
   type = "text",
+  errorMessage = "",
+  error = false,
   onChange = () => {},
   onBlur = () => {},
-  errorMessage = "",
 }: InputFieldProps) => {
   return (
     <div className="field">
@@ -42,9 +44,7 @@ export const InputField = ({
         onChange={onChange}
         onBlur={onBlur}
       />
-      {errorMessage.length > 0 && (
-        <p className="field--error">{errorMessage}</p>
-      )}
+      {error && <p className="field--error">{errorMessage}</p>}
     </div>
   );
 };
@@ -54,6 +54,7 @@ export const SelectField = ({
   label,
   options,
   errorMessage = "",
+  error,
   onChange = () => {},
   onBlur = () => {},
 }: InputSelectProps) => {
@@ -67,9 +68,7 @@ export const SelectField = ({
           </option>
         ))}
       </select>
-      {errorMessage.length > 0 && (
-        <p className="field--error">{errorMessage}</p>
-      )}
+      {error && <p className="field--error">{errorMessage}</p>}
     </div>
   );
 };
