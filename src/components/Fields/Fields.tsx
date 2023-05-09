@@ -1,9 +1,11 @@
+import "./Fields.css";
+
 interface FieldProps {
   label: string;
   type?: string;
   name: string;
-  required: boolean;
   value: string;
+  errorMessage?: string;
 }
 
 interface OptionType {
@@ -13,10 +15,12 @@ interface OptionType {
 
 interface InputFieldProps extends FieldProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface InputSelectProps extends FieldProps {
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onBlur?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   options: Array<OptionType>;
 }
 
@@ -24,20 +28,23 @@ export const InputField = ({
   name,
   label,
   type = "text",
-  required = false,
   onChange = () => {},
-  value,
+  onBlur = () => {},
+  errorMessage = "",
 }: InputFieldProps) => {
   return (
     <div className="field">
       <label htmlFor={name}>{label}</label>
       <input
-        required={required}
         type={type}
         name={name}
         id={name}
         onChange={onChange}
+        onBlur={onBlur}
       />
+      {errorMessage.length > 0 && (
+        <p className="field--error">{errorMessage}</p>
+      )}
     </div>
   );
 };
@@ -45,20 +52,24 @@ export const InputField = ({
 export const SelectField = ({
   name,
   label,
-  required = false,
   options,
+  errorMessage = "",
   onChange = () => {},
+  onBlur = () => {},
 }: InputSelectProps) => {
   return (
     <div className="field selectField">
       <label htmlFor={name}>{label}</label>
-      <select required={required} name={name} id={name} onChange={onChange}>
+      <select name={name} id={name} onChange={onChange} onBlur={onBlur}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
       </select>
+      {errorMessage.length > 0 && (
+        <p className="field--error">{errorMessage}</p>
+      )}
     </div>
   );
 };

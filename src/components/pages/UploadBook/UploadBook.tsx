@@ -2,11 +2,9 @@ import { ErrorMessage } from "../../ErrorMessage/ErrorMessage";
 import { InputField, SelectField } from "../../Fields/Fields";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
-import * as Yup from "yup";
-
-import { BookType } from "../../../types/Books";
 
 import { areaTypes, BOOK_PROPERTIES } from "../../../constants";
+import { UploadBookValidation } from "./UploadBookValidation";
 
 import { useBook } from "../../../hooks/useBook";
 import { useFormik } from "formik";
@@ -14,21 +12,12 @@ import { useFormik } from "formik";
 import "./UploadBook.css";
 
 export const UploadBook = () => {
-  const { handleSubmit, error } = useBook();
-
-  const initialValues: BookType = {
-    img: "",
-    title: "",
-    author: "",
-    area: "common",
-    description: "",
-    link: "",
-  };
+  const { handleSubmit, error, book } = useBook();
 
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues: book,
     onSubmit: (values) => handleSubmit(values),
-    validationSchema: uploadBookSchema,
+    validationSchema: UploadBookValidation,
   });
 
   return (
@@ -39,45 +28,45 @@ export const UploadBook = () => {
         <InputField
           label="Titulo"
           name={BOOK_PROPERTIES.TITLE}
-          required={true}
           value={formik.values.title}
           onChange={formik.handleChange}
+          errorMessage={formik.errors.title}
         />
         <InputField
           label="Autor"
           name={BOOK_PROPERTIES.AUTHOR}
-          required={true}
           value={formik.values.author}
           onChange={formik.handleChange}
+          errorMessage={formik.errors.author}
         />
         <InputField
           label="Imagen de portada"
           name={BOOK_PROPERTIES.IMG}
-          required={false}
           value={formik.values.img}
           onChange={formik.handleChange}
+          errorMessage={formik.errors.img}
         />
         <InputField
           label="Enlace del libro"
           name={BOOK_PROPERTIES.LINK}
-          required={false}
           value={formik.values.link}
           onChange={formik.handleChange}
+          errorMessage={formik.errors.link}
         />
         <SelectField
           label="Area"
           name={BOOK_PROPERTIES.AREA}
           options={areaTypes}
-          required={true}
           onChange={formik.handleChange}
+          errorMessage={formik.errors.area}
           value={formik.values.area}
         />
         <InputField
           label="Descripcion"
           name={BOOK_PROPERTIES.DESCRIPTION}
-          required={true}
           value={formik.values.description}
           onChange={formik.handleChange}
+          errorMessage={formik.errors.description}
           type="textarea"
         />
         {error && (
@@ -90,18 +79,3 @@ export const UploadBook = () => {
     </section>
   );
 };
-
-const uploadBookSchema = Yup.object().shape({
-  title: Yup.string()
-    .min(2, "El titulo es muy corto.")
-    .required("El campo es requerido."),
-  author: Yup.string()
-    .min(2, "El nombre es muy corto.")
-    .required("El campo es requerido."),
-  img: Yup.string().min(8, "La imagen no es válida."),
-  link: Yup.string()
-    .min(8, "La URL no es válida.")
-    .required("El campo es requerido."),
-  area: Yup.string().required("El campo es requerido."),
-  description: Yup.string().required("El campo es requerido."),
-});

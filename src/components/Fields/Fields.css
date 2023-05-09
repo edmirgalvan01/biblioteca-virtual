@@ -1,0 +1,5 @@
+.field--error {
+  font-size: 14px;
+  color: var(--color-red);
+  font-weight: 600;
+}

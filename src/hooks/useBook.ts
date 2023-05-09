@@ -12,11 +12,20 @@ export const useBook = () => {
   const { insert } = useInsertBook();
   const [error, setError] = useState<PostgrestError | null>(null);
 
+  const book: BookType = {
+    img: "",
+    title: "",
+    author: "",
+    area: "common",
+    description: "",
+    link: "",
+  };
+
   const handleSubmit = (values: BookType) => {
     const { error: errorResponse } = insert(values);
     if (!errorResponse) navigate("/home");
     setError(errorResponse);
   };
 
-  return { handleSubmit, error };
+  return { book, handleSubmit, error };
 };
