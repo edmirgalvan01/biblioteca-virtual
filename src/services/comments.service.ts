@@ -35,7 +35,16 @@ export const editComment = async (
   return error;
 };
 
-export const deleteComment = (commentId: number) => {};
+export const deleteComment = async (
+  commentId: number
+): Promise<PostgrestError | null> => {
+  const { error } = await supabase
+    .from("book_comments")
+    .delete()
+    .eq("id", commentId);
+
+  return error;
+};
 
 export const likeComment = (commentId: number, userId: string) => {};
 
