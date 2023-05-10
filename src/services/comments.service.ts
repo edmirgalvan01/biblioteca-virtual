@@ -2,7 +2,7 @@ import { PostgrestError } from "@supabase/postgrest-js";
 import { ArrayResponseType } from "../types/Users";
 import { supabase } from "../supabase/client";
 
-import type { CommentType } from "../types/Comments";
+import type { CommentType, LikeType } from "../types/Comments";
 
 export const addComent = async (
   comment: CommentType
@@ -46,6 +46,12 @@ export const deleteComment = async (
   return error;
 };
 
-export const likeComment = (commentId: number, userId: string) => {};
+export const likeComment = async (
+  like: LikeType
+): Promise<PostgrestError | null> => {
+  const { error } = await supabase.from("comment_likes").insert(like);
+
+  return error;
+};
 
 export const unlikeComment = (commentId: number, userId: string) => {};
