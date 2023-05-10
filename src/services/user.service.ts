@@ -35,14 +35,6 @@ export const signInUser = async (email: string, password: string) => {
   return { data, error };
 };
 
-export const insertUser = async (
-  user: UserType
-): Promise<InsertUserResponse> => {
-  const { error } = await supabase.from("users").insert(user);
-
-  return { error };
-};
-
 export const updateUser = async (
   user: UserType
 ): Promise<UpdateUserResponse> => {
