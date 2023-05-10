@@ -1,6 +1,14 @@
+import { PostgrestError } from "@supabase/postgrest-js";
+import { supabase } from "../supabase/client";
 import { CommentType } from "../types/Comments";
 
-export const addComent = (comment: CommentType) => {};
+export const addComent = async (
+  comment: CommentType
+): Promise<PostgrestError | null> => {
+  const { error } = await supabase.from("book_comments").insert(comment);
+
+  return error;
+};
 
 export const readBookComments = (bookId: number) => {};
 
