@@ -53,5 +53,3 @@ export const likeComment = async (
 
   return error;
 };
-
-export const unlikeComment = (commentId: number, userId: string) => {};
