@@ -4,11 +4,12 @@ import { ListOfBooksWithTitle } from "../../ListOfBooks/ListOfBooks";
 import { FavoriteIcon } from "../../icons/FavoriteIcon";
 import { PrimaryButton } from "../../Buttons/Buttons";
 import { BackButton } from "../../BackButton";
+import { CommentsSection } from "../../CommentsSection/CommentsSection";
+import { FavoriteIconMarked } from "../../icons/FavoriteIconMarked";
 
 import { useGetBooks } from "../../../hooks/useGetBooks";
 
 import { useIsFavoriteBook } from "../../../hooks/useIsFavoriteBook";
-import { FavoriteIconMarked } from "../../icons/FavoriteIconMarked";
 
 import "./BookPage.css";
 
@@ -54,6 +55,7 @@ export const BookPage = () => {
         books={filteredBooks}
         style="horizontal"
       />
+      <CommentsSection />
     </div>
   );
 };
