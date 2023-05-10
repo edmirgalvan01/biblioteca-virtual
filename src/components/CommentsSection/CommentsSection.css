@@ -1,5 +1,26 @@
 .commentsSection {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
+}
+
+.commentsSection--form {
+  display: flex;
+  gap: 10px;
+}
+.commentsSection--form input {
+  width: 70%;
+  height: 35px;
+  padding-left: 10px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid var(--color-third);
+}
+.commentsSection--form button {
+  width: 30%;
+  border-radius: 8px;
+  background-color: var(--color-third);
+  border: none;
+  color: var(--color-white);
+  font-weight: 600;
 }
