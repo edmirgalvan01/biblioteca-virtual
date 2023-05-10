@@ -40,3 +40,13 @@ export const BOOK_PROPERTIES = {
   AREA: "area",
   DESCRIPTION: "description",
 };
+
+export const USER_PROPERTIES = {
+  USER_TYPE: "userType",
+  NAME: "name",
+  LASTNAME: "lastName",
+  EMAIL: "email",
+  PASSWORD: "password",
+  LICENSE_NUMBER: "licenseNumber",
+  ACCESS_CODE: "accessCode",
+};

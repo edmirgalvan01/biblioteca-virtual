@@ -1,17 +1,21 @@
 import { SuccessMessage } from "../../SuccessMessage/SuccessMessage";
 import { ErrorMessage } from "../../ErrorMessage/ErrorMessage";
 import { InputField, SelectField } from "../../Fields/Fields";
-import { PrimaryButton } from "../../Buttons/Buttons";
-import { ResponseType } from "../../../types/Users";
-import { useUser } from "../../../hooks/useUser";
-import { USER_TYPES } from "../../../constants";
-import { BackButton } from "../../BackButton";
-import { useState } from "react";
-import "./RegisterPage.css";
 import { useSignUpUser } from "../../../hooks/useSignUpUser";
+import { PrimaryButton } from "../../Buttons/Buttons";
+import { ResponseType, UserType } from "../../../types/Users";
+import { useUser } from "../../../hooks/useUser";
+import { USER_PROPERTIES, USER_TYPES } from "../../../constants";
+import { BackButton } from "../../BackButton";
+import { useFormik } from "formik";
+import { useState } from "react";
+import * as Yup from "yup";
+import "./RegisterPage.css";
 
 export const RegisterPage = () => {
   const { user, handleChangeUser } = useUser();
+  const isStudent = user.userType === "student";
+
   const { createNewUser } = useSignUpUser(user);
 
   const [registerResponse, setRegisterResponse] = useState<ResponseType>();
@@ -21,12 +25,16 @@ export const RegisterPage = () => {
     { value: USER_TYPES.USER_TEACHER, label: "Maestro" },
   ];
 
-  const handleSubmit = async (event: React.SyntheticEvent) => {
-    event.preventDefault();
-
+  const handleSubmit = async (values: UserType) => {
     const response = await createNewUser();
     setRegisterResponse(response);
   };
+
+  const formik = useFormik({
+    initialValues: user,
+    onSubmit: (values) => handleSubmit(values),
+    validationSchema: RegisterValidation,
+  });
 
   const handleErrorMessage = (): JSX.Element | undefined => {
     if (registerResponse) {
@@ -50,75 +58,73 @@ export const RegisterPage = () => {
     <div className="registerPage">
       <BackButton />
       <h1>Registrarse</h1>
-      <form onSubmit={handleSubmit} className="registerForm">
+      <form onSubmit={formik.handleSubmit} className="registerForm">
         <SelectField
-          name="userType"
           label="Tipo de usuario"
-          required={true}
-          onChange={(e) => {
-            handleChangeUser(e.target.value, "userType");
-          }}
+          name={USER_PROPERTIES.USER_TYPE}
+          value={formik.values.userType}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           options={optionsSelect}
-          value={user.userType}
         />
         <InputField
-          name="name"
+          name={USER_PROPERTIES.NAME}
           label="Nombre(s)"
-          required={true}
-          onChange={(e) => {
-            handleChangeUser(e.target.value, "name");
-          }}
-          value={user.name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.name}
+          errorMessage={formik.errors.name}
+          error={formik.errors.name && formik.touched.name}
         />
         <InputField
-          name="lastName"
+          name={USER_PROPERTIES.LASTNAME}
           label="Apellidos"
-          required={true}
-          onChange={(e) => {
-            handleChangeUser(e.target.value, "lastName");
-          }}
-          value={user.lastName}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.lastName}
+          errorMessage={formik.errors.lastName}
+          error={formik.errors.lastName && formik.touched.lastName}
         />
         <InputField
-          name="email"
+          name={USER_PROPERTIES.EMAIL}
           label="Correo electrónico"
           type="email"
-          required={true}
-          onChange={(e) => {
-            handleChangeUser(e.target.value, "email");
-          }}
-          value={user.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.email}
+          errorMessage={formik.errors.email}
+          error={formik.errors.email && formik.touched.email}
         />
         <InputField
-          name="password"
+          name={USER_PROPERTIES.PASSWORD}
           label="Contraseña"
           type="password"
-          required={true}
-          onChange={(e) => {
-            handleChangeUser(e.target.value, "password");
-          }}
-          value={user.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.password}
+          errorMessage={formik.errors.password}
+          error={formik.errors.password && formik.touched.password}
         />
-        {user.userType === "student" ? (
+        {isStudent ? (
           <InputField
-            name="licenseNumber"
+            name={USER_PROPERTIES.LICENSE_NUMBER}
             label="Número de matricula"
-            required={true}
-            onChange={(e) => {
-              handleChangeUser(e.target.value, "licenseNumber");
-            }}
-            value={user.licenseNumber}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.licenseNumber}
+            errorMessage={formik.errors.licenseNumber}
+            error={formik.errors.licenseNumber && formik.touched.licenseNumber}
           />
         ) : (
           <InputField
-            name="accessCode"
+            name={USER_PROPERTIES.ACCESS_CODE}
             type="password"
             label="Código de acceso"
-            required={true}
-            onChange={(e) => {
-              handleChangeUser(e.target.value, "accessCode");
-            }}
-            value={user.accessCode}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.accessCode}
+            errorMessage={formik.errors.accessCode}
+            error={formik.errors.accessCode && formik.touched.accessCode}
           />
         )}
 
@@ -129,3 +135,21 @@ export const RegisterPage = () => {
     </div>
   );
 };
+
+export const RegisterValidation = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "El nombre es muy corto.")
+    .required("El campo es requerido."),
+  lastName: Yup.string()
+    .min(5, "El apellido es muy corto.")
+    .required("El campo es requerido."),
+  email: Yup.string().email().required("El campo es requerido."),
+  password: Yup.string()
+    .min(6, "La contraseña es muy corta.")
+    .required("El campo es requerido."),
+  licenseNumber: Yup.string().when("isStudent", {
+    is: true,
+    then: Yup.string().required("El campo es requerido."),
+    otherwise: Yup.string(),
+  }),
+});
