@@ -5,6 +5,8 @@ export const ListOfComments = () => {
   return (
     <div className="listOfComments">
       <Comment />
+      <Comment />
+      <Comment />
     </div>
   );
 };

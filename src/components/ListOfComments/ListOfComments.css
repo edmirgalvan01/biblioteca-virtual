@@ -1,0 +1,6 @@
+.listOfComments {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  overflow-x: scroll;
+}
