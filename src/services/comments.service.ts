@@ -1,7 +1,8 @@
 import { PostgrestError } from "@supabase/postgrest-js";
-import { supabase } from "../supabase/client";
-import { CommentType } from "../types/Comments";
 import { ArrayResponseType } from "../types/Users";
+import { supabase } from "../supabase/client";
+
+import type { CommentType } from "../types/Comments";
 
 export const addComent = async (
   comment: CommentType
@@ -22,7 +23,17 @@ export const readBookComments = async (
   return { data, error };
 };
 
-export const editComment = (commentId: number) => {};
+export const editComment = async (
+  commentId: number,
+  newComment: CommentType
+): Promise<PostgrestError | null> => {
+  const { error } = await supabase
+    .from("book_comments")
+    .update(newComment)
+    .eq("id", commentId);
+
+  return error;
+};
 
 export const deleteComment = (commentId: number) => {};
 
