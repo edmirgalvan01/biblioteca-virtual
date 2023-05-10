@@ -4,3 +4,9 @@ export interface CommentType {
   user_id: string;
   content: string;
 }
+
+export interface LikeType {
+  id?: number;
+  user_id: string;
+  comment_id: number;
+}
