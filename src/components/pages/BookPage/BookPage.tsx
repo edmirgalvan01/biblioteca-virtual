@@ -55,7 +55,7 @@ export const BookPage = () => {
         books={filteredBooks}
         style="horizontal"
       />
-      <CommentsSection />
+      <CommentsSection bookId={parsedId} />
     </div>
   );
 };

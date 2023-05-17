@@ -4,7 +4,7 @@ import { supabase } from "../supabase/client";
 
 import type { CommentType, LikeType } from "../types/Comments";
 
-export const addComent = async (
+export const addComment = async (
   comment: CommentType
 ): Promise<PostgrestError | null> => {
   const { error } = await supabase.from("book_comments").insert(comment);
