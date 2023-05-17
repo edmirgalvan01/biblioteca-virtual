@@ -2,6 +2,7 @@ import { CommentType } from "../../types/Comments";
 import { BiLike, BiPencil, BiTrash } from "react-icons/bi";
 import { useDateFromString } from "../../hooks/useDateFromString";
 import { useGetSession } from "../../hooks/useGetSession";
+import { useComment } from "../../hooks/useComment";
 import "./Comment.css";
 
 interface Props {
@@ -11,9 +12,14 @@ interface Props {
 export const Comment = ({ comment }: Props) => {
   const { month, year } = useDateFromString(comment.created_at!);
   const { session } = useGetSession();
+  const { removeComment } = useComment();
 
   const date = `${month} ${year}`;
   const isOwner = session?.data.session?.user.id === comment.user_id;
+
+  const handleClickDelete = () => {
+    removeComment(comment.id!);
+  };
 
   return (
     <article className="comment">
@@ -30,7 +36,11 @@ export const Comment = ({ comment }: Props) => {
             <BiLike size={25} color="#A9A9A9" />
             {isOwner ? (
               <>
-                <BiPencil size={25} color="#A9A9A9" />
+                <BiPencil
+                  size={25}
+                  color="#A9A9A9"
+                  onClick={handleClickDelete}
+                />
                 <BiTrash size={25} color="#A9A9A9" />
               </>
             ) : null}
