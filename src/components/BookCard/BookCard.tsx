@@ -10,7 +10,10 @@ export const BookCard = ({ book }: Props) => {
   const navigate = useNavigate();
 
   return (
-    <article className="bookCard" onClick={() => navigate(`/book/${book.id}`)}>
+    <article
+      className="bookCard"
+      onClick={() => window.location.assign(`/book/${book.id}`)}
+    >
       {book.img ? (
         <img className="bookCard--img" src={book.img} alt={book.title} />
       ) : (
