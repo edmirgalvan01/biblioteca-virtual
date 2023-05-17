@@ -4,3 +4,9 @@
   overflow: hidden;
   overflow-x: scroll;
 }
+.listOfComments--noComments {
+  color: var(--color-grey);
+  font-weight: 600;
+  font-style: italic;
+  font-size: 16px;
+}
