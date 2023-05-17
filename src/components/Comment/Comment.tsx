@@ -12,13 +12,17 @@ interface Props {
 export const Comment = ({ comment }: Props) => {
   const { month, year } = useDateFromString(comment.created_at!);
   const { session } = useGetSession();
-  const { removeComment } = useComment();
+  const { removeComment, likedComment } = useComment();
 
   const date = `${month} ${year}`;
   const isOwner = session?.data.session?.user.id === comment.user_id;
 
   const handleClickDelete = () => {
     removeComment(comment.id!);
+  };
+
+  const handleClickLike = () => {
+    likedComment(session?.data.session?.user.id!, comment?.id!);
   };
 
   return (
@@ -33,7 +37,7 @@ export const Comment = ({ comment }: Props) => {
             <p className="comment--date">{date}</p>
           </div>
           <div className="comment--buttons">
-            <BiLike size={25} color="#A9A9A9" />
+            <BiLike size={25} color="#A9A9A9" onClick={handleClickLike} />
             {isOwner ? (
               <>
                 <BiPencil
