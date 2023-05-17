@@ -3,6 +3,7 @@ export interface CommentType {
   created_at?: string;
   book_id: number;
   user_id: string;
+  user_name: string;
   content: string;
 }
 

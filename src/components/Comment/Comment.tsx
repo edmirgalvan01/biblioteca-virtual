@@ -15,18 +15,17 @@ export const Comment = ({ comment }: Props) => {
   const { session } = useGetSession();
 
   const date = `${month} ${year}`;
-  const name = `${userData?.name} ${userData?.lastName}`;
   const isOwner = session?.data.session?.user.id === comment.user_id;
 
   return (
     <article className="comment">
       <header>
         <div className="comment--user-profile">
-          <p>{userData?.name[0]}</p>
+          <p>{comment.user_name[0]}</p>
         </div>
         <div className="comment--header--info">
           <div className="comment--user-info">
-            <p className="comment--user-name">{name}</p>
+            <p className="comment--user-name">{comment.user_name}</p>
             <p className="comment--date">{date}</p>
           </div>
           <div className="comment--buttons">
