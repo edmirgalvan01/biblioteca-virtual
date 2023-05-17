@@ -21,7 +21,7 @@ export const CommentsSection = ({ bookId }: Props) => {
         />
         <button type="submit">Guardar</button>
       </form>
-      <ListOfComments />
+      <ListOfComments bookId={bookId} />
     </div>
   );
 };

@@ -18,7 +18,7 @@ export const readBookComments = async (
   const { data, error } = await supabase
     .from("book_comments")
     .select()
-    .eq("id", bookId);
+    .eq("book_id", bookId);
 
   return { data, error };
 };

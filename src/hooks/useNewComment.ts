@@ -16,7 +16,6 @@ export const useNewComment = (bookId: number) => {
       user_id: session?.data.session?.user.id!,
       content: newComment,
     };
-    console.log(commentToSave);
 
     // TODO: Servicio para guardar comentario
     addComment(commentToSave).then((err) => {

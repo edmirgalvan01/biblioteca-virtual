@@ -1,12 +1,19 @@
+import { useGetComments } from "../../hooks/useGetComments";
 import { Comment } from "../Comment/Comment";
 import "./ListOfComments.css";
 
-export const ListOfComments = () => {
+interface Props {
+  bookId: number;
+}
+
+export const ListOfComments = ({ bookId }: Props) => {
+  const { comments } = useGetComments(bookId);
+
   return (
     <div className="listOfComments">
-      <Comment />
-      <Comment />
-      <Comment />
+      {comments.map((comment) => (
+        <Comment key={comment.id} comment={comment} />
+      ))}
     </div>
   );
 };
