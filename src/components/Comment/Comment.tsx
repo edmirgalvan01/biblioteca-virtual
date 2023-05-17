@@ -1,7 +1,6 @@
 import { CommentType } from "../../types/Comments";
 import { BiLike, BiPencil, BiTrash } from "react-icons/bi";
 import { useDateFromString } from "../../hooks/useDateFromString";
-import { useGetUserData } from "../../hooks/useGetUserData";
 import { useGetSession } from "../../hooks/useGetSession";
 import "./Comment.css";
 
@@ -11,7 +10,6 @@ interface Props {
 
 export const Comment = ({ comment }: Props) => {
   const { month, year } = useDateFromString(comment.created_at!);
-  const { userData } = useGetUserData();
   const { session } = useGetSession();
 
   const date = `${month} ${year}`;

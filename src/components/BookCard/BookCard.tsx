@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { BookType } from "../../types/Books";
 import "./BookCard.css";
 
@@ -7,8 +6,6 @@ interface Props {
 }
 
 export const BookCard = ({ book }: Props) => {
-  const navigate = useNavigate();
-
   return (
     <article
       className="bookCard"
