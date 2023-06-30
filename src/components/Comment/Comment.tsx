@@ -3,6 +3,7 @@ import { BiLike, BiPencil, BiTrash } from "react-icons/bi";
 import { useDateFromString } from "../../hooks/useDateFromString";
 import { useGetSession } from "../../hooks/useGetSession";
 import { useComment } from "../../hooks/useComment";
+import { Toaster, toast } from "sonner";
 import "./Comment.css";
 
 interface Props {
@@ -19,7 +20,7 @@ export const Comment = ({ comment }: Props) => {
 
   const handleClickDelete = async () => {
     const error = await removeComment(comment.id!);
-    if (!error) console.log(error);
+    if (!error) toast.success("Este comentario se eliminó correctamente.");
   };
 
   const handleClickLike = () => {
@@ -28,6 +29,7 @@ export const Comment = ({ comment }: Props) => {
 
   return (
     <article className="comment">
+      <Toaster richColors position="top-center" />
       <header>
         <div className="comment--user-profile">
           <p>{comment.user_name[0]}</p>
