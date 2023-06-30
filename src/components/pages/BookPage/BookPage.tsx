@@ -26,7 +26,7 @@ export const BookPage = () => {
   const handleClickReadBook = () => (window.location.href = book?.link!);
 
   return (
-    <div className="bookPage">
+    <div className="bookPage containerPage">
       <BackButton />
       <section className="bookPage--portrait">
         {book?.img ? (

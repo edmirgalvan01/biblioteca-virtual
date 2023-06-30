@@ -19,7 +19,7 @@ export const Home = () => {
   }, [books]);
 
   return (
-    <div className="home">
+    <div className="home containerPage">
       <Header />
       <Filters books={books} setBooks={setFilteredBooks} />
       <ListOfBooks books={filteredBooks} />

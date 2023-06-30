@@ -21,7 +21,7 @@ export const ProfilePage = () => {
   }`;
 
   return (
-    <div className="profilePage">
+    <div className="profilePage containerPage">
       <BackButton />
       <h2>Datos personales</h2>
       <DataItem

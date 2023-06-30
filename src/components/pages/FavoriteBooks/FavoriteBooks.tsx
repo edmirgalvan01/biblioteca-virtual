@@ -7,7 +7,7 @@ export const FavoriteBooks = () => {
   const { favoriteBooks } = useGetFavoriteBooks();
 
   return (
-    <div className="favoriteBooks">
+    <div className="favoriteBooks containerPage">
       <BackButton />
       <h1>Libros favoritos</h1>
       <ListOfBooks books={favoriteBooks} />

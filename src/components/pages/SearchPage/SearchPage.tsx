@@ -12,7 +12,7 @@ export const SearchPage = () => {
   };
 
   return (
-    <div className="searchPage">
+    <div className="searchPage containerPage">
       <BackButton />
       <h1>Buscar</h1>
       <form className="searchPage--form">

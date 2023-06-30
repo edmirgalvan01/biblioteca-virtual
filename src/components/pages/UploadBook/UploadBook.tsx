@@ -13,7 +13,7 @@ export const UploadBook = () => {
   const { book, handleChange, handleSubmit, error } = useBook();
 
   return (
-    <section className="uploadBook">
+    <section className="uploadBook containerPage">
       <BackButton />
       <h1>Nuevo libro</h1>
       <form className="uploadBook--form" onSubmit={handleSubmit}>
