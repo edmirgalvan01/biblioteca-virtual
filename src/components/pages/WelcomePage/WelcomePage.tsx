@@ -6,7 +6,7 @@ export const WelcomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="welcomePage">
+    <section className="welcomePage containerPage">
       <div className="welcomePage--titles">
         <p>Bienvenido/a</p>
         <h1>Biblioteca virtual</h1>

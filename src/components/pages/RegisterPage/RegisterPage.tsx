@@ -47,7 +47,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="registerPage">
+    <div className="registerPage containerPage">
       <BackButton />
       <h1>Registrarse</h1>
       <form onSubmit={handleSubmit} className="registerForm">

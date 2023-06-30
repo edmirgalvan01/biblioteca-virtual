@@ -22,7 +22,7 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="loginPage">
+    <div className="loginPage containerPage">
       <BackButton />
       <h1>Iniciar sesión</h1>
       <form onSubmit={handleSubmit} className="loginForm">

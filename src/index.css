@@ -5,6 +5,11 @@
   font-family: "Roboto", sans-serif;
 }
 
+.containerPage {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 :root {
   --color-first: #edf1d6;
   --color-second: #9dc08b;
