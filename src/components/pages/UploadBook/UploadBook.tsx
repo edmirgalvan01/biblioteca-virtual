@@ -6,7 +6,6 @@ import { BackButton } from "../../BackButton";
 import { areaTypes } from "../../../constants";
 
 import { useBook } from "../../../hooks/useBook";
-import { useGetUserType } from "../../../hooks/useGetUserType";
 
 import "./UploadBook.css";
 

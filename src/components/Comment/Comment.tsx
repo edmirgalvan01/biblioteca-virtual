@@ -17,8 +17,9 @@ export const Comment = ({ comment }: Props) => {
   const date = `${month} ${year}`;
   const isOwner = session?.data.session?.user.id === comment.user_id;
 
-  const handleClickDelete = () => {
-    removeComment(comment.id!);
+  const handleClickDelete = async () => {
+    const error = await removeComment(comment.id!);
+    if (!error) console.log(error);
   };
 
   const handleClickLike = () => {
@@ -38,7 +39,7 @@ export const Comment = ({ comment }: Props) => {
           </div>
           <div className="comment--buttons">
             <BiLike size={25} color="#A9A9A9" onClick={handleClickLike} />
-            {isOwner ? (
+            {isOwner && (
               <>
                 <BiPencil
                   size={25}
@@ -47,7 +48,7 @@ export const Comment = ({ comment }: Props) => {
                 />
                 <BiTrash size={25} color="#A9A9A9" />
               </>
-            ) : null}
+            )}
           </div>
         </div>
       </header>

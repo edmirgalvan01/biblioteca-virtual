@@ -4,10 +4,9 @@ import { deleteComment, likeComment } from "../services/comments.service";
 export const useComment = () => {
   const [isCommentLiked, setIsCommentLiked] = useState<boolean>(false);
 
-  const removeComment = (commentId: number) => {
-    deleteComment(commentId).then((error) => {
-      console.error(error);
-    });
+  const removeComment = async (commentId: number) => {
+    const error = await deleteComment(commentId);
+    return error;
   };
 
   const likedComment = (userId: string, commentId: number) => {
